@@ -32,7 +32,20 @@ public class PostStructure {
         return user;
     }
 
+    /**
+     *
+     * @param user to fetch all post inside
+     * @param date the parameter to be filtered, search before that date
+     * @return return List<Post> under that date.
+     */
+
     public List<Post> findPostsUnderDate(User user,Date date){
         List<Post> posts = new ArrayList<>();
+        for(Post post: user.getPosts()){
+            if (post.getPostDate().before(date)){
+                posts.add(post);
+            }
+        }
+        return posts;
     }
 }

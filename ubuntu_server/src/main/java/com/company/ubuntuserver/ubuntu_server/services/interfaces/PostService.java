@@ -1,6 +1,7 @@
 package com.company.ubuntuserver.ubuntu_server.services.interfaces;
 
 import com.company.ubuntuserver.ubuntu_server.entities.Post;
+import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.PostNotInDataBaseException;
 
 import java.util.Date;
@@ -14,5 +15,5 @@ public interface PostService {
     Post findOnePost(Integer postId) throws PostNotInDataBaseException;
     void deletePost(Integer userId,Post post);
     void updatePost(Integer userId, Post post);
-    List<Post> findPostUnderDate(Date datePost);
+    List<Post> findPostUnderDate(User user, Date datePost);
 }

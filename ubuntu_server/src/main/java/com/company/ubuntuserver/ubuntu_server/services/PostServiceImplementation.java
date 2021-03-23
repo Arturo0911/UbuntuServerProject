@@ -26,6 +26,9 @@ public class PostServiceImplementation implements PostService {
     @Autowired
     private IPost iPost;
 
+    @Autowired
+    private PostStructure postStructure;
+
     @Override
     public Post newPost(@Valid Post post) {
         return iPost.save(post);
@@ -59,12 +62,11 @@ public class PostServiceImplementation implements PostService {
     @Override
     public void updatePost(@Valid Integer userId,@Valid Post post) {
         Optional<User> user = iUser.findById(userId);
-        PostStructure postStructure = new PostStructure();
         iUser.save(postStructure.updatePostLocatedInArray(user.get(), post));
     }
 
     @Override
-    public List<Post> findPostUnderDate(@Valid Date datePost) {
-        return null;
+    public List<Post> findPostUnderDate(@Valid User user,@Valid Date datePost) {
+        return postStructure.findPostsUnderDate(user,datePost);
     }
 }
