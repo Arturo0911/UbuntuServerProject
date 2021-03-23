@@ -2,13 +2,12 @@ package com.company.ubuntuserver.ubuntu_server.utilities.structure;
 
 
 import com.company.ubuntuserver.ubuntu_server.entities.User;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Service
+@Component
 public class UserStructure {
 
     /**

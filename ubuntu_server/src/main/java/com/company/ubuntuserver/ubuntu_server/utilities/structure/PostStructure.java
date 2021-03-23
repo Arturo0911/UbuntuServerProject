@@ -3,13 +3,12 @@ package com.company.ubuntuserver.ubuntu_server.utilities.structure;
 
 import com.company.ubuntuserver.ubuntu_server.entities.Post;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Component
 public class PostStructure {
 
 
@@ -22,7 +21,7 @@ public class PostStructure {
     public User updatePostLocatedInArray(User user, Post post){
         for(Post post1: user.getPosts()){
 
-            if (post1.getPostId() == post.getPostId()){
+            if (post1.getPostId().equals(post.getPostId())){
                 post1.setPostContent(post.getPostContent());
                 post1.setPostModify(new Date());
                 break;
