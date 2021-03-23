@@ -19,6 +19,11 @@ public class UserServiceImplementation implements UserService {
     IUser iUser;
 
     @Override
+    public User newUser(User user) {
+        return iUser.save(user);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return iUser.findAll();
     }

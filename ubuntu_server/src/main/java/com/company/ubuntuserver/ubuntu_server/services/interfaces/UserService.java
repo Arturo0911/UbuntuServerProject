@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface UserService {
 
+    User newUser(User user);
     List<User> getAllUsers();
     Optional<User> findUserById(Integer userId) throws UserNotInDataBaseException;
     void deleteUser(Integer userId);
