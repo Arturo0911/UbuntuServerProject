@@ -1,4 +1,4 @@
-package com.company.ubuntuserver.ubuntu_server.services;
+package com.company.ubuntuserver.ubuntu_server.services.interfaces;
 
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;

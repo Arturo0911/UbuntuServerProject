@@ -1,6 +1,7 @@
 package com.company.ubuntuserver.ubuntu_server.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,13 @@ public class Post {
 
     @Column(name = "post_date")
     @Getter @Setter
+    @JsonFormat(pattern="dd/MM/yy")
     private Date postDate;
+
+    @Column(name = "post_modify")
+    @Getter @Setter
+    @JsonFormat(pattern="dd/MM/yy")
+    private Date postModify;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

@@ -3,11 +3,11 @@ package com.company.ubuntuserver.ubuntu_server.services;
 
 import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
+import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
