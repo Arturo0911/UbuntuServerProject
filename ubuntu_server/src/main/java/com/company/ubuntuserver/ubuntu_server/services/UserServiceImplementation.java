@@ -77,6 +77,7 @@ public class UserServiceImplementation implements UserService {
         Optional<User> userToUnFollow = iUser.findById(user);
 
         userFollow.get().getUsers().remove(userToUnFollow.get());
+        iUser.save(userFollow.get());
     }
 
     @Override

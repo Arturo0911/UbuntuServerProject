@@ -20,6 +20,49 @@ public class UserController {
     private UserService userService;
 
 
+    @GetMapping("/allFollowers/{userId}")
+    ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,
+                            userService.findAllFollowings(userid)));
+        }catch (Exception e ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.NO_CONTENT.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }
+
+
+    @DeleteMapping("/unFollow/{userToUnFollow}")
+    ResponseEntity<JsonResponseBody> unFollow(@Valid Integer userId,@Valid @PathVariable("userToUnFollow") Integer userToUnFollow){
+        try {
+            userService.deleteFollowing(userId, userToUnFollow);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,"Un follow user"));
+        }catch (Exception e ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }
+
+    @PostMapping("/follow/{userFollower}/{userToFollow}")
+    ResponseEntity<JsonResponseBody> follow(@Valid @PathVariable("userFollower") Integer userFollower,
+                                            @Valid @PathVariable("userToFollow") Integer userToFollow){
+        try {
+            userService.followUser(userFollower, userToFollow);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,"ok"));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }
 
 
     @GetMapping("/allUsers")
@@ -79,7 +122,10 @@ public class UserController {
     @DeleteMapping("/deleteUser/{userId}")
     ResponseEntity<JsonResponseBody> deleteUser(@Valid @PathVariable("userId") Integer userId){
         try {
-
+            userService.deleteUser(userId);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,"User was deleted successfully"));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
