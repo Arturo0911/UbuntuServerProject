@@ -3,30 +3,28 @@ from flask import jsonify
 from flask import request
 import requests
 from pprint import pprint
-
+import json
 
 
 # modules
 from app.helpers import endpoints
+from app.helpers import server_messages
+
+
+
 
 # USERS ROUTES
 """Get all the users from SpringBoot"""
 @app.route("/all_users", methods = ['GET'])
 def get_users():
     
-    #request_ = requests.get("http://localhost:8080/user/test")
     request_ = requests.get(endpoints.GET_ALL_USERS)
-    pprint(request_.json())
-    
-    # for x in request_.json()['response']:
-    #     print(x)
-    #return "hello world"
     return jsonify(request_.json()['response'])
 
 
 
 
-@app.route("new_user", methods = ['GET','POST'])
+@app.route("/new_user", methods = ['GET','POST'])
 def create_user():
 
     if request.method == "POST":
@@ -42,10 +40,11 @@ def create_user():
                 "password": request.json['password'],
             }
 
-            return jsonify(new_user)
-        except Exception as e:
-            return jsonify({
-                "error_message": "Processing with problems "+str(e)
-            })
+            response = jsonify(new_user)
+            print(json.dumps(new_user))
+            requests.post(endpoints.CREATE_USER,data=json.dumps(new_user))
+            return jsonify(server_messages.server_messages['success'])
+        except:
+            return jsonify(server_messages.server_messages['error'])
     else:
         pass
