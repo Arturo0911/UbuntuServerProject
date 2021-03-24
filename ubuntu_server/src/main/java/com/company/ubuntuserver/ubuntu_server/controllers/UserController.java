@@ -5,14 +5,18 @@ import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JsonResponseBody;
 import com.company.ubuntuserver.ubuntu_server.utilities.messages.ServerMessages;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.function.Supplier;
 
+@Log
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -106,14 +110,18 @@ public class UserController {
         }
     }
 
-    @PostMapping("/newUser")
-    ResponseEntity<JsonResponseBody> newUser(@Valid @RequestBody User user){
+    @PostMapping(value = "/newUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<JsonResponseBody> newUser( @RequestBody User user){
         try {
+            //log.info((Supplier<String>) user);
+
             userService.newUser(user);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
                             ServerMessages.successMessage, user));
         }catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
                             ServerMessages.errorMessage, e.toString()));
