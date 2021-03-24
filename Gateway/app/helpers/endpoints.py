@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 
+GET_ALL_USERS = "http://localhost:8080/user/allUsers"
 FIND_USER =  "http://127.0.0.1:8080/user/findUser/{}"
 CREATE_USER =  "http://127.0.0.1:8080/user/newUser"
 UPDATE_USER =  "http://127.0.0.1:8080/user/updateUser"

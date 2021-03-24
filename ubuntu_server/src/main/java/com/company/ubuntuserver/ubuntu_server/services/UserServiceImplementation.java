@@ -5,6 +5,7 @@ import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
+import com.company.ubuntuserver.ubuntu_server.utilities.structure.UserStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,17 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     IUser iUser;
 
+    @Autowired
+    UserStructure userStructure;
+
     @Override
     public User newUser(User user) {
-        return iUser.save(user);
+        return  iUser.save(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return iUser.findAll();
+    public List getAllUsers() {
+        return userStructure.formatUsers(iUser.findAll());
     }
 
     @Override
@@ -63,7 +67,7 @@ public class UserServiceImplementation implements UserService {
     public List<User> findAllFollowings(Integer userId) {
         try {
             Optional<User> followers = iUser.findById(userId);
-            return followers.get().getUsers();
+            return userStructure.formatUsers(followers.get().getUsers());
         }catch (Exception e){
             e.printStackTrace();
             return null;

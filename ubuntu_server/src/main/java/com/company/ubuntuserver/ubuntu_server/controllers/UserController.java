@@ -34,6 +34,20 @@ public class UserController {
     }
 
 
+    /*@GetMapping("/allUsers")
+    ResponseEntity<JsonResponseBody> allUsers(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage, userService.getAllUsers()));
+        } catch (Exception e ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.NO_CONTENT.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }*/
+
+
     @GetMapping("/allFollowers/{userId}")
     ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
         try {
