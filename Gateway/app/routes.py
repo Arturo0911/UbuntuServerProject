@@ -35,32 +35,8 @@ def create_user():
 
     if request.method == "POST":
         try:
-            new_user = Object()
-            new_user.userName = request.json['userName']
-            new_user.userLastName = request.json['userLastName']
-            new_user.userBirth = request.json['userBirth']
-            new_user.gender = request.json['gender']
-            new_user.phoneNumber = request.json['phoneNumber']
-            new_user.status = request.json['status']
-            new_user.email = request.json['email']
-            new_user.password = request.json['password']
 
-            #print(new_user.toJSON())
-            # user_new = {
-            #     "userName": request.json['userName'],
-            #     "userLastName": request.json['userLastName'],
-            #     "userBirth": request.json['userBirth'],
-            #     "gender": request.json['gender'],
-            #     "phoneNumber": request.json['phoneNumber'],
-            #     "status": request.json['status'],
-            #     "email": request.json['email'],
-            #     "password": request.json['password']
-            # }
-            #response = json.dumps(new_user.toJSON())
-            #print(Response(response,  mimetype="application/json"))
             headers = {'Content-type': 'application/json','Accept': 'application/json'}
-            #r = requests.session()
-            #req = r.get("http://127.0.0.1:8080/user/newUser",headers = headers)
             
             body = json.dumps({
                 "userName": request.json['userName'],
@@ -73,11 +49,40 @@ def create_user():
                 "password": request.json['password']
             })
             user = requests.post("http://127.0.0.1:8080/user/newUser",data=body, headers = headers)
-            print(user.status_code)
-            print(user.json())
-            return jsonify(server_messages.server_messages['success'])
+            return jsonify(server_messages.server_messages(user.status_code))
         except Exception as e:
             print(str(e))
-            return jsonify(server_messages.server_messages['error'])
+            return jsonify(server_messages.server_messages(user.status_code))
     else:
         pass
+
+
+@app.route("/update_user")
+def update_user():
+    pass
+
+@app.route("/search_user") # findUser/{userId} => int
+def search_user():
+    pass
+
+
+@app.route("/delete_user") # findUser/{userId} => int
+def delete_user():
+    pass
+
+
+# FOLLOWERS ROUTES
+
+
+
+@app.route("/all_followers")
+def get_all_followings():
+    pass
+
+@app.route("/follow")
+def follow_user():
+    pass
+
+@app.route("/unfollow")
+def un_follow():
+    pass
