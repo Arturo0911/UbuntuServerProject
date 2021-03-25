@@ -23,13 +23,6 @@ def get_users():
     return jsonify(request_.json()['response'])
 
 
-"""
-class Object:
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
-"""
-
 @app.route("/new_user", methods = ['GET','POST'])
 def create_user():
 
@@ -62,35 +55,41 @@ def create_user():
 @app.route("/update_user", methods = ['PUT'])
 def update_user():
 
-    if request.method == 'PUT':
-        body = json.dumps(request.json)
-        print(body)
-        return "Hi"
-    else:
-        pass
+    print(request.method)
+    status_code = requests_resolvers.handler_request(endpoints.UPDATE_USER,
+        request.json,request.method )
+    print(status_code)
+    return jsonify(server_messages.server_messages(status_code))
 
-@app.route("/search_user") # findUser/{userId} => int
-def search_user():
-    pass
+@app.route("/search_user/<user_id>", methods = ['GET']) # findUser/{userId} => int
+def search_user(user_id:int):
+    
+    print(request.method)
+    get_object = requests_resolvers.handler_request_path_variable(user_id, request.method)
+    print(get_object)
+    return jsonify(get_object)
 
+@app.route("/delete_user/<user_id>", methods = ['DELETE']) # findUser/{userId} => int
+def delete_user(user_id:int):
 
-@app.route("/delete_user") # findUser/{userId} => int
-def delete_user():
-    pass
+    print(request.method)
+    status_code = requests_resolvers.handler_request_path_variable(user_id, request.method)
+    print(status_code)
+    return jsonify(server_messages.server_messages(status_code))
 
 
 # FOLLOWERS ROUTES
 
 
 
-@app.route("/all_followers")
+@app.route("/all_followers", methods = ['GET'])
 def get_all_followings():
     pass
 
-@app.route("/follow")
+@app.route("/follow", methods = ['POST'])
 def follow_user():
     pass
 
-@app.route("/unfollow")
+@app.route("/unfollow", methods = ['DELETE'])
 def un_follow():
     pass

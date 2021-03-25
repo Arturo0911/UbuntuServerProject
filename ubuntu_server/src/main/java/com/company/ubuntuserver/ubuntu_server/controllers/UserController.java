@@ -128,7 +128,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping( value =  "/updateUser",consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<JsonResponseBody>updateUser(@Valid @RequestBody User user){
         try {
             return ResponseEntity.status(HttpStatus.OK)

@@ -22,12 +22,12 @@ public class User {
     private Integer userId;
 
     @Getter @Setter
-    @Column(name = "user_name")
+    @Column(name = "user_name", length = 25)
     @NotNull @NotBlank
     private String userName;
 
     @Getter @Setter
-    @Column(name = "user_lastnames")
+    @Column(name = "user_lastnames", length = 25)
     @NotNull @NotBlank
     private String userLastName;
 
@@ -43,27 +43,27 @@ public class User {
     private Date userBirth;
 
     @Getter @Setter
-    @Column(name = "user_gender")
+    @Column(name = "user_gender", length = 10)
     @NotNull @NotBlank
     private String gender;
 
     @Getter @Setter
-    @Column(name = "user_phone_number")
+    @Column(name = "user_phone_number", length = 25)
     @NotNull @NotBlank
     private String phoneNumber;
 
     @Getter @Setter
-    @Column(name = "user_status")
+    @Column(name = "user_status", length = 10)
     @NotNull @NotBlank
     private String status;
 
     @Getter @Setter
-    @Column(name = "user_email")
+    @Column(name = "user_email", length = 30)
     @NotNull @NotBlank
     private String email;
 
     @Getter @Setter
-    @Column(name = "user_password")
+    @Column(name = "user_password", length = 120)
     @NotNull @NotBlank
     private String password;
 
