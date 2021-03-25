@@ -16,13 +16,14 @@ from app.helpers import requests_resolvers
 
 # USERS ROUTES
 """Get all the users from SpringBoot"""
+# OK
 @app.route("/all_users", methods = ['GET'])
 def get_users():
     
     request_ = requests.get(endpoints.GET_ALL_USERS)
     return jsonify(request_.json()['response'])
 
-
+# OK
 @app.route("/new_user", methods = ['GET','POST'])
 def create_user():
 
@@ -51,7 +52,7 @@ def create_user():
     else:
         pass
 
-
+# OK
 @app.route("/update_user", methods = ['PUT'])
 def update_user():
 
@@ -61,6 +62,7 @@ def update_user():
     print(status_code)
     return jsonify(server_messages.server_messages(status_code))
 
+# OK
 @app.route("/search_user/<user_id>", methods = ['GET']) # findUser/{userId} => int
 def search_user(user_id:int):
     
@@ -69,6 +71,7 @@ def search_user(user_id:int):
     print(get_object)
     return jsonify(get_object)
 
+# OK
 @app.route("/delete_user/<user_id>", methods = ['DELETE']) # findUser/{userId} => int
 def delete_user(user_id:int):
 

@@ -16,17 +16,16 @@ def handler_request(url:str, body_to_send:dict, method:str) -> int:
         try:
             users = requests.post(url, data=body, headers = HEADERS)
             return users.status_code
-        except Exception as e:
-            return str(e)
+        except:
+            return 404
     elif method == "PUT":
         try:
             users = requests.put(url, data=body, headers = HEADERS)
             return users.status_code
-        except Exception as e:
-            return str(e)
-    elif method == "DELETE":
-        print(method)
-        return "OK!!!!!!"
+        except:
+            return 404
+    else:
+        return 500
 
 
 """Exclusive funciton only to delete and search one method with parameter in the url """
@@ -38,18 +37,15 @@ def handler_request_path_variable(user_id:int, method:str )-> int:
 
             return users.status_code
 
-        except Exception as e:
-            print(str(e))
+        except:
             return 404
     elif method == 'GET':
         try:
             url = "http://127.0.0.1:8080/user/findUser/{}".format(int(user_id))
             users = requests.get(url, headers = HEADERS)
-
             return users.json()['response']
 
-        except Exception as e:
-            print(str(e))
+        except:
             return 404
     else:
 

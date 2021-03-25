@@ -3,6 +3,7 @@ package com.company.ubuntuserver.ubuntu_server.services.interfaces;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ public interface UserService {
 
     User newUser(User user);
     List<User> getAllUsers();
-    Optional<User> findUserById(Integer userId) throws UserNotInDataBaseException;
+    HashMap<Object, Object> findUserById(Integer userId) throws UserNotInDataBaseException;
     void deleteUser(Integer userId);
     User updateUser(User oldUser);
 

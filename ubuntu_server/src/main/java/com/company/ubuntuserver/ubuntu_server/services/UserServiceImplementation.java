@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public Optional<User> findUserById(@NotNull Integer userId) throws UserNotInDataBaseException {
+    public HashMap<Object, Object> findUserById(@NotNull Integer userId) throws UserNotInDataBaseException {
 
         Optional<User> findUser = iUser.findById(userId);
         if (findUser.isPresent()){
@@ -42,7 +43,7 @@ public class UserServiceImplementation implements UserService {
                 throw new UserNotInDataBaseException("User not found in database");
             }
         }
-        return Optional.empty();
+        return userStructure.formatUser(findUser.get());
     }
 
     @Override
