@@ -37,21 +37,6 @@ public class UserController {
                         ServerMessages.successMessage, response));
     }
 
-
-    /*@GetMapping("/allUsers")
-    ResponseEntity<JsonResponseBody> allUsers(){
-        try {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            ServerMessages.successMessage, userService.getAllUsers()));
-        } catch (Exception e ){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new JsonResponseBody(HttpStatus.NO_CONTENT.value(),
-                            ServerMessages.errorMessage, e.toString()));
-        }
-    }*/
-
-
     @GetMapping("/allFollowers/{userId}")
     ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
         try {
@@ -67,13 +52,14 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/unFollow/{userToUnFollow}")
-    ResponseEntity<JsonResponseBody> unFollow(@Valid Integer userId,@Valid @PathVariable("userToUnFollow") Integer userToUnFollow){
+    @DeleteMapping("/unFollow/{userId}/{userToUnFollow}")
+    ResponseEntity<JsonResponseBody> unFollow(@Valid @PathVariable("userId") Integer userId,
+                                              @Valid @PathVariable("userToUnFollow") Integer userToUnFollow){
         try {
             userService.deleteFollowing(userId, userToUnFollow);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            ServerMessages.successMessage,"Un follow user"));
+                            ServerMessages.successMessage,"Unfollow user"));
         }catch (Exception e ){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),

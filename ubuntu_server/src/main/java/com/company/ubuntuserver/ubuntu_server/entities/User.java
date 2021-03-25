@@ -31,8 +31,14 @@ public class User {
     @NotNull @NotBlank
     private String userLastName;
 
+    @JsonFormat(pattern = "dd/MM/yy")
+    @Getter @Setter
+    @Column(name = "user_created")
+    private Date userCreatedAt;
+
     @Getter @Setter
     @JsonFormat(pattern="dd/MM/yy")
+    //@NotNull @NotBlank
     @Column(name = "user_birth")
     private Date userBirth;
 
@@ -63,7 +69,7 @@ public class User {
 
     @PrePersist
     void generateDate(){
-        this.userBirth = new Date();
+        this.userCreatedAt = new Date();
     }
 
     @ManyToMany(fetch = FetchType.EAGER)

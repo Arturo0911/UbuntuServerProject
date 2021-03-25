@@ -54,9 +54,17 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User updateUser(@NotNull User user) {
+    public User updateUser(@NotNull User oldUser) {
         try {
-            return iUser.save(user);
+            Optional<User> user = iUser.findById(oldUser.getUserId());
+            user.get().setUserBirth(oldUser.getUserBirth());
+            user.get().setEmail(oldUser.getEmail());
+            user.get().setUserName(oldUser.getUserName());
+            user.get().setUserLastName(oldUser.getUserLastName());
+            user.get().setPhoneNumber(oldUser.getPhoneNumber());
+            user.get().setPassword(oldUser.getPassword());
+            user.get().setPassword(oldUser.getPassword());
+            return iUser.save(user.get());
         }catch (Exception e){
             e.printStackTrace();
             return  null;

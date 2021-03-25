@@ -12,7 +12,7 @@ public interface UserService {
     List<User> getAllUsers();
     Optional<User> findUserById(Integer userId) throws UserNotInDataBaseException;
     void deleteUser(Integer userId);
-    User updateUser(User user);
+    User updateUser(User oldUser);
 
     List<User> findAllFollowings(Integer userId);
     void deleteFollowing(Integer userId, Integer user);

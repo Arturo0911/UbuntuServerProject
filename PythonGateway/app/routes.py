@@ -5,12 +5,12 @@ from flask import Response
 import json
 import requests
 from pprint import pprint
-
+from concurrent.futures import Executor
 
 # modules
 from app.helpers import endpoints
 from app.helpers import server_messages
-
+from app.helpers import requests_resolvers
 
 
 
@@ -23,12 +23,12 @@ def get_users():
     return jsonify(request_.json()['response'])
 
 
-
+"""
 class Object:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
-
+"""
 
 @app.route("/new_user", methods = ['GET','POST'])
 def create_user():
@@ -36,6 +36,7 @@ def create_user():
     if request.method == "POST":
         try:
 
+            ###### REPLACE FOR THE REQUEST HANDLER
             headers = {'Content-type': 'application/json','Accept': 'application/json'}
             
             body = json.dumps({
@@ -49,6 +50,7 @@ def create_user():
                 "password": request.json['password']
             })
             user = requests.post("http://127.0.0.1:8080/user/newUser",data=body, headers = headers)
+            ######
             return jsonify(server_messages.server_messages(user.status_code))
         except Exception as e:
             print(str(e))
@@ -57,9 +59,15 @@ def create_user():
         pass
 
 
-@app.route("/update_user")
+@app.route("/update_user", methods = ['PUT'])
 def update_user():
-    pass
+
+    if request.method == 'PUT':
+        body = json.dumps(request.json)
+        print(body)
+        return "Hi"
+    else:
+        pass
 
 @app.route("/search_user") # findUser/{userId} => int
 def search_user():
