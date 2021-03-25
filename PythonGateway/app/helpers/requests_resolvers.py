@@ -50,3 +50,40 @@ def handler_request_path_variable(user_id:int, method:str )-> int:
     else:
 
         return 500
+
+
+
+""" Get all the followers from one user """
+
+def get_all_followings(user_id:int) -> dict:
+
+    try:
+        url = "http://127.0.0.1:8080/user/allFollowers/{}".format(int(user_id))
+        followers = requests.get(url, headers = HEADERS)
+
+        return followers.json()['response']
+    except :
+        pass
+
+def follow_user(user_id:int, user_to_follow:int) -> int:
+
+
+    try:
+        url = "http://127.0.0.1:8080/user/follow/{}/{}".format(int(user_id),
+            int(user_to_follow))
+        user = requests.post(url, headers = HEADERS)
+        return user.status_code
+
+    except:
+        return 500
+
+def unfollow_user(user_id:int, user_to_unfollow:int) -> int:
+
+    try:
+
+        url = "http://127.0.0.1:8080/user/unFollow/{}/{}".format(int(user_id), 
+            int(user_to_unfollow))
+        users = requests.delete(url, headers = HEADERS)
+        return users.status_code
+    except:
+        return 500

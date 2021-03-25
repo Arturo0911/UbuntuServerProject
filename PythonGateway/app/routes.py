@@ -56,43 +56,46 @@ def create_user():
 @app.route("/update_user", methods = ['PUT'])
 def update_user():
 
-    print(request.method)
     status_code = requests_resolvers.handler_request(endpoints.UPDATE_USER,
         request.json,request.method )
-    print(status_code)
     return jsonify(server_messages.server_messages(status_code))
 
 # OK
 @app.route("/search_user/<user_id>", methods = ['GET']) # findUser/{userId} => int
 def search_user(user_id:int):
     
-    print(request.method)
-    get_object = requests_resolvers.handler_request_path_variable(user_id, request.method)
-    print(get_object)
+    get_object = requests_resolvers.handler_request_path_variable(user_id, 
+        request.method)
     return jsonify(get_object)
 
 # OK
 @app.route("/delete_user/<user_id>", methods = ['DELETE']) # findUser/{userId} => int
 def delete_user(user_id:int):
 
-    print(request.method)
-    status_code = requests_resolvers.handler_request_path_variable(user_id, request.method)
-    print(status_code)
+    status_code = requests_resolvers.handler_request_path_variable(user_id,
+        request.method)
     return jsonify(server_messages.server_messages(status_code))
 
 
 # FOLLOWERS ROUTES
 
 
+# OK
+@app.route("/all_followers/<user_id>", methods = ['GET'])
+def get_all_followings(user_id):
+    
+    return jsonify(requests_resolvers.get_all_followings(int(user_id)))
 
-@app.route("/all_followers", methods = ['GET'])
-def get_all_followings():
-    pass
+# OK
+@app.route("/follow/<user_id>/<user_to_follow>", methods = ['POST'])
+def follow_user(user_id:int, user_to_follow:int):
 
-@app.route("/follow", methods = ['POST'])
-def follow_user():
-    pass
+    status_code = requests_resolvers.follow_user(user_id, user_to_follow)
+    return jsonify(server_messages.server_messages(status_code))
 
-@app.route("/unfollow", methods = ['DELETE'])
-def un_follow():
-    pass
+# OK
+@app.route("/unfollow/<user_id>/<user_to_unfollow>", methods = ['DELETE'])
+def un_follow(user_id:int, user_to_unfollow:int):
+
+    status_code = requests_resolvers.unfollow_user(user_id,user_to_unfollow)
+    return jsonify(server_messages.server_messages(status_code))

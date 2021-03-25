@@ -24,19 +24,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/test")
-    ResponseEntity<JsonResponseBody> testing(){
-
-        HashMap<Object, Object> response = new HashMap<>();
-        response.put("name", "Arturo");
-        response.put("age", 28);
-
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(new JsonResponseBody(HttpStatus.OK.value(),
-                        ServerMessages.successMessage, response));
-    }
-
     @GetMapping("/allFollowers/{userId}")
     ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
         try {
