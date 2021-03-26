@@ -2,6 +2,7 @@ package com.company.ubuntuserver.ubuntu_server.utilities;
 
 
 import io.jsonwebtoken.*;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
@@ -13,9 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JWTUtils {
+public class JWTUtil {
 
-    public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {
+    private static final String KEY = "Never Give UP! and keep learning";
+
+    public String generateToken(UserDetails userDetails){
+        return Jwts.builder().setSubject(userDetails.getUsername()).setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis()+ 1000*60*60*10))
+                .signWith(SignatureAlgorithm.HS256, KEY).compact();
+    }
+
+    /*public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {
         String jwt = Jwts.builder()
                 .setSubject(email)
                 .setExpiration(date)
@@ -53,12 +62,6 @@ public class JWTUtils {
         return userData;
     }
 
-    /**
-     * @implNote this method extract jwt from the header or the cookie in the httpRequest
-     * @param request body request with the jwt inside
-     * @return return the string extracted from the header of the request
-     */
-
     public String getJWTFromHttpRequest(HttpServletRequest request){
         String jwt = null;
         if(request.getHeader("jwt") != null){
@@ -74,5 +77,5 @@ public class JWTUtils {
             }
         }
         return jwt;
-    }
+    }*/
 }

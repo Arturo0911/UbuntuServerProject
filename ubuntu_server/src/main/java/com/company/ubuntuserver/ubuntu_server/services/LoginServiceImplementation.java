@@ -3,6 +3,7 @@ package com.company.ubuntuserver.ubuntu_server.services;
 import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.LoginService;
+import com.company.ubuntuserver.ubuntu_server.utilities.JWTUtil;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotLoggedException;
@@ -19,6 +20,9 @@ public class LoginServiceImplementation implements LoginService {
 
     @Autowired
     IUser iUser;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
     @Override
