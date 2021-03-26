@@ -35,4 +35,13 @@ public class UserStructure {
         }
         return allUsersManagement;
     }
+
+
+    public User hashPassword(){
+        return null;
+    }
+
+    public boolean matchPassword(String password, String passwordHashed){
+        return true;
+    }
 }

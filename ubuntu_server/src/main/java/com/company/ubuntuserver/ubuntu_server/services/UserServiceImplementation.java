@@ -25,6 +25,9 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User newUser(User user) {
+
+        User userToSave = user;
+
         return  iUser.save(user);
     }
 
