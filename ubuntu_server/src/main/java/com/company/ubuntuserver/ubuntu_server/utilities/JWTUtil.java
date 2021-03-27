@@ -26,7 +26,10 @@ public class JWTUtil {
     }
 
     public boolean validateToken(String jwtToken, UserDetails userDetails ){
-        return userDetails.getUsername().equals(extractUsername(jwtToken)) && !isTokenExpired(jwtToken);
+
+        final String userEmail = extractUsername(jwtToken);
+        return userEmail.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken);
+        //return userDetails.getUsername().equals(extractUsername(jwtToken)) && !isTokenExpired(jwtToken);
     }
 
     public String extractUsername(String token){
@@ -45,6 +48,24 @@ public class JWTUtil {
      */
     private Claims getClaims(String token){
         return Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+    }
+
+
+    public String getJWTFromHttpRequest(HttpServletRequest request){
+        String jwt = null;
+        if(request.getHeader("jwt") != null){
+            // THen the jwt it's on the header of the request
+            jwt = request.getHeader("jwt");
+        } else if (request.getCookies() != null) {
+            // token it's on the cookies
+            Cookie [] cookies = request.getCookies();
+            for(Cookie cookie: cookies){
+                if (cookie.getName().equals("jwt")) {
+                    jwt = cookie.getValue();
+                }
+            }
+        }
+        return jwt;
     }
 
     /*public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {

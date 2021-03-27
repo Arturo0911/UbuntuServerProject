@@ -4,11 +4,11 @@ package com.company.ubuntuserver.ubuntu_server.services;
 import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
+import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.EmailExistsException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.structure.UserStructure;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +30,13 @@ public class UserServiceImplementation implements UserService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public User newUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return  iUser.save(user);
+    public User newUser(User user) throws EmailExistsException {
+        if(userExists(user.getEmail())){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return  iUser.save(user);
+        }else{
+            throw new EmailExistsException("Email already exists");
+        }
     }
 
     @Override
@@ -138,5 +142,23 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findByEmail(String email) {
         return null;
+    }
+
+
+    /**
+     *
+     * @param email email in the requests
+     * @return return true if the email doesn't exists
+     */
+    public Boolean userExists(String email)  {
+
+        User user = iUser.findUserByEmail(email);
+        if (user  == null){
+            return true;
+        }else{
+            return false;
+        }
+
+        //return user.getEmail() == null;
     }
 }

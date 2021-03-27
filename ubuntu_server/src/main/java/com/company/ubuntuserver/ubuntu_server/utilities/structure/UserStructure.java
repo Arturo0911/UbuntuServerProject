@@ -2,9 +2,7 @@ package com.company.ubuntuserver.ubuntu_server.utilities.structure;
 
 
 import com.company.ubuntuserver.ubuntu_server.entities.User;
-import com.company.ubuntuserver.ubuntu_server.security.EncryptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;

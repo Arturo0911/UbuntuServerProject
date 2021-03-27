@@ -1,6 +1,7 @@
 package com.company.ubuntuserver.ubuntu_server.security;
 
 
+import com.company.ubuntuserver.ubuntu_server.config.UserService;
 import com.company.ubuntuserver.ubuntu_server.security.filter.JWTFilterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,15 +24,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    /*@Autowired
+    private UserDetailsService userDetailsService;*/
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserService userDetailsService;
+
 
     @Autowired
     private JWTFilterRequest jwtFilterRequest;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(11);
+        return new BCryptPasswordEncoder();
     }
 
 
@@ -48,9 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/user/allFollowers/{userId}").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/newUser").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
     }
 
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }
