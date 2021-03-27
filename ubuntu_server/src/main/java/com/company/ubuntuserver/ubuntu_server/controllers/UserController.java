@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
-@Log
 @RestController
 @RequestMapping("/user")
 public class UserController {

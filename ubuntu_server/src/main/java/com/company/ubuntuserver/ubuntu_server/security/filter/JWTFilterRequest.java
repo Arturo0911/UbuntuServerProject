@@ -1,6 +1,6 @@
 package com.company.ubuntuserver.ubuntu_server.security.filter;
 
-import com.company.ubuntuserver.ubuntu_server.config.CustomDetailService;
+import com.company.ubuntuserver.ubuntu_server.config.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,10 +21,10 @@ import java.io.IOException;
 public class JWTFilterRequest extends OncePerRequestFilter {
 
     @Autowired
-    JWTUtil jwtUtil;
+    private JWTUtil jwtUtil;
 
     @Autowired
-    private CustomDetailService customDetailService;
+    private UserService userService;
 
 
     @Override
@@ -37,7 +37,7 @@ public class JWTFilterRequest extends OncePerRequestFilter {
             String username = jwtUtil.extractUsername(jwt);
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication()  == null){
-                UserDetails userDetails = customDetailService.loadUserByUsername(username);
+                UserDetails userDetails = userService.loadUserByUsername(username);
 
                 if (jwtUtil.validateToken(jwt, userDetails)){
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

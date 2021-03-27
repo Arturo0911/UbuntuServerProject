@@ -4,6 +4,8 @@ package com.company.ubuntuserver.ubuntu_server.utilities.structure;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.security.EncryptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +21,7 @@ public class UserStructure {
      */
 
     @Autowired
-    EncryptionUtils encryptionUtils;
+    private PasswordEncoder passwordEncoder;
 
     public HashMap formatUser(User user){
 
@@ -42,23 +44,4 @@ public class UserStructure {
         return allUsersManagement;
     }
 
-    /**
-     *
-     * @param user object to get the password and hash it
-     * @return new User object with the password hashed
-     */
-    public User hashPassword(User user){
-        user.setPassword(encryptionUtils.encryptData(user.getPassword()));
-        return user;
-    }
-
-    /**
-     *
-     * @param password password from the request
-     * @param passwordHashed password hashed from the DB
-     * @return return if both password after decrypt are the same.
-     */
-    public boolean matchPassword(String password, String passwordHashed){
-        return encryptionUtils.decryptData(passwordHashed).equals(password);
-    }
 }

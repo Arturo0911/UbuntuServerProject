@@ -4,9 +4,12 @@ package com.company.ubuntuserver.ubuntu_server.services;
 import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
+import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.structure.UserStructure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -23,10 +26,13 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     UserStructure userStructure;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Override
     public User newUser(User user) {
-
-        return  iUser.save(userStructure.hashPassword(user));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return  iUser.save(user);
     }
 
     @Override
@@ -100,5 +106,37 @@ public class UserServiceImplementation implements UserService {
         Optional<User> newUser = iUser.findById(userToFollow);
         userFollow.get().getUsers().add(newUser.get());
         iUser.save(userFollow.get());
+    }
+
+    @Override
+    public User authentication(String email, String password) throws UserNotInDataBaseException {
+        return null;
+    }
+
+    /*@Override
+    public User authentication(String email, String password) throws UserNotInDataBaseException {
+
+        try {
+            User user = iUser.findUserByEmail(email);
+
+            if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+                return user;
+            }else{
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }*/
+
+    @Override
+    public String createJWT(String email) throws NotSupportedEncodingException {
+        return null;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return null;
     }
 }
