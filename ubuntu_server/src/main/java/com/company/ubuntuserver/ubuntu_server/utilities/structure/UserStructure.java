@@ -2,6 +2,8 @@ package com.company.ubuntuserver.ubuntu_server.utilities.structure;
 
 
 import com.company.ubuntuserver.ubuntu_server.entities.User;
+import com.company.ubuntuserver.ubuntu_server.security.EncryptionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +18,9 @@ public class UserStructure {
      *      - Format users to show much more pretty all the users features
      */
 
+    @Autowired
+    EncryptionUtils encryptionUtils;
+
     public HashMap formatUser(User user){
 
         HashMap<Object, Object> userManagement = new HashMap<>();
@@ -24,6 +29,7 @@ public class UserStructure {
         userManagement.put("userLastName", user.getUserLastName());
         userManagement.put("userBirth", user.getUserBirth());
         userManagement.put("userPhoneNumber", user.getPhoneNumber());
+        userManagement.put("userEmail", user.getEmail());
         return userManagement;
     }
 
@@ -36,12 +42,23 @@ public class UserStructure {
         return allUsersManagement;
     }
 
-
-    public User hashPassword(){
-        return null;
+    /**
+     *
+     * @param user object to get the password and hash it
+     * @return new User object with the password hashed
+     */
+    public User hashPassword(User user){
+        user.setPassword(encryptionUtils.encryptData(user.getPassword()));
+        return user;
     }
 
+    /**
+     *
+     * @param password password from the request
+     * @param passwordHashed password hashed from the DB
+     * @return return if both password after decrypt are the same.
+     */
     public boolean matchPassword(String password, String passwordHashed){
-        return true;
+        return encryptionUtils.decryptData(passwordHashed).equals(password);
     }
 }

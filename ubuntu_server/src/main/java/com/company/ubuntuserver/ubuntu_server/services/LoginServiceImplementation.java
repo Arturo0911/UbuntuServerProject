@@ -7,6 +7,7 @@ import com.company.ubuntuserver.ubuntu_server.utilities.JWTUtil;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotLoggedException;
+import com.company.ubuntuserver.ubuntu_server.utilities.structure.UserStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,21 @@ public class LoginServiceImplementation implements LoginService {
     @Autowired
     private JWTUtil jwtUtil;
 
+    @Autowired
+    private UserStructure userStructure;
+
 
     @Override
     public User authentication(String email, String password) throws UserNotInDataBaseException {
 
         try{
             User user = iUser.findUserByEmail(email);
-            return user;
+            if (userStructure.matchPassword(password,user.getPassword())){
+                return user;
+            }else{
+                throw new UserNotInDataBaseException("User not found in database");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             return null ;
@@ -39,12 +48,22 @@ public class LoginServiceImplementation implements LoginService {
     }
 
     @Override
-    public String createJWT(String email, String userName, Date date) throws NotSupportedEncodingException {
-        return null;
+    public String createJWT(String email) throws NotSupportedEncodingException {
+        return jwtUtil.generateToken(email);
     }
 
     @Override
     public HashMap<Object, Object> getJWTFromRequest(HttpServletRequest request) throws NotSupportedEncodingException, UserNotLoggedException {
         return null;
+    }
+
+    /**
+     *
+     * @param email
+     * @return User object
+     */
+    @Override
+    public User findByEmail(String email) {
+        return iUser.findUserByEmail(email);
     }
 }

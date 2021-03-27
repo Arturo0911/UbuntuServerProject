@@ -1,7 +1,9 @@
 package com.company.ubuntuserver.ubuntu_server.utilities.messages;
 
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
 
 public class ServerMessages {
 

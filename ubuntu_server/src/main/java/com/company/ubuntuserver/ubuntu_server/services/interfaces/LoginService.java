@@ -13,7 +13,10 @@ public interface LoginService {
 
     User authentication(String email, String password) throws UserNotInDataBaseException;
 
-    String createJWT(String email, String userName, Date date) throws NotSupportedEncodingException;
+    String createJWT(String email) throws NotSupportedEncodingException;
 
     HashMap<Object, Object> getJWTFromRequest(HttpServletRequest request) throws NotSupportedEncodingException, UserNotLoggedException;
+
+    User findByEmail(String email);
+
 }

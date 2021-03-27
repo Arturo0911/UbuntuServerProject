@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface IUser extends JpaRepository<User, Integer> {
 
     public User findUserByEmail(String userEmail);
-    //@Query(name = "SELECT password from users WHERE email:= email", nativeQuery = true)
 }
