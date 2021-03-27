@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,12 +17,34 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
-    private static final String KEY = "Never Give UP! and keep learning";
+    private static final String KEY = "Never";
 
     public String generateToken(String email){
         return Jwts.builder().setSubject(email).setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000*60*60*10))
                 .signWith(SignatureAlgorithm.HS256, KEY).compact();
+    }
+
+    public boolean validateToken(String jwtToken, UserDetails userDetails ){
+        return userDetails.getUsername().equals(extractUsername(jwtToken)) && !isTokenExpired(jwtToken);
+    }
+
+    public String extractUsername(String token){
+        return getClaims(token).getSubject();
+    }
+
+    public boolean isTokenExpired(String token){
+        return getClaims(token).getExpiration().before(new Date());
+    }
+
+
+    /**
+     *
+     * @param token token generated with the method.
+     * @return get token body
+     */
+    private Claims getClaims(String token){
+        return Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
     }
 
     /*public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {

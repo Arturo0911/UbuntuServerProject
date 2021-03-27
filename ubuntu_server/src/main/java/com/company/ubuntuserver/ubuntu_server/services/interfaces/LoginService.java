@@ -15,8 +15,6 @@ public interface LoginService {
 
     String createJWT(String email) throws NotSupportedEncodingException;
 
-    HashMap<Object, Object> getJWTFromRequest(HttpServletRequest request) throws NotSupportedEncodingException, UserNotLoggedException;
-
     User findByEmail(String email);
 
 }

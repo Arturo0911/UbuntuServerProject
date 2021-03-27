@@ -6,12 +6,15 @@ import com.company.ubuntuserver.ubuntu_server.utilities.authenticator.Authentica
 import com.company.ubuntuserver.ubuntu_server.utilities.authenticator.AuthenticationResponse;
 import com.company.ubuntuserver.ubuntu_server.utilities.JsonResponseBody;
 import com.company.ubuntuserver.ubuntu_server.utilities.messages.ServerMessages;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
+
+@Log
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -36,6 +39,7 @@ public class AuthenticationController {
                             ));
         }catch (Exception e){
             e.printStackTrace();
+            log.info(e.toString());
             return ResponseEntity.status(HttpStatus.FORBIDDEN).
                     body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(),
                             ServerMessages.errorMessage, e.toString() ));

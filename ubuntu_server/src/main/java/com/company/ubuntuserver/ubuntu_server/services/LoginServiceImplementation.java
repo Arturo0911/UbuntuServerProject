@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Optional;
 
+
+
 @Service
 public class LoginServiceImplementation implements LoginService {
 
@@ -34,14 +36,16 @@ public class LoginServiceImplementation implements LoginService {
 
         try{
             User user = iUser.findUserByEmail(email);
-            if (userStructure.matchPassword(password,user.getPassword())){
+            return user;
+            /*if (userStructure.matchPassword(password,user.getPassword())){
                 return user;
             }else{
                 throw new UserNotInDataBaseException("User not found in database");
-            }
+            }*/
 
         }catch (Exception e){
             e.printStackTrace();
+
             return null ;
         }
 
@@ -52,10 +56,6 @@ public class LoginServiceImplementation implements LoginService {
         return jwtUtil.generateToken(email);
     }
 
-    @Override
-    public HashMap<Object, Object> getJWTFromRequest(HttpServletRequest request) throws NotSupportedEncodingException, UserNotLoggedException {
-        return null;
-    }
 
     /**
      *

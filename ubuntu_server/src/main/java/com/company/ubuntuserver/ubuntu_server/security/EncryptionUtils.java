@@ -17,7 +17,8 @@ public class EncryptionUtils {
 
     public EncryptionUtils(){
         textEncryptor = new BasicTextEncryptor();
-        textEncryptor.setPassword("L1ke X Zt0ne ");
+        //textEncryptor.setPassword("L1ke X Zt0ne ");
+        textEncryptor.setPassword("L1ke");
     }
 
 
