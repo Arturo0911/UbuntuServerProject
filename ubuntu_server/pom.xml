@@ -96,6 +96,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>RedditHub</finalName>
 	</build>
 
 </project>
