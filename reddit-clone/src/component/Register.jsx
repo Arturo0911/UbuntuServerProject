@@ -2,10 +2,10 @@ import React from 'react';
 import '../assets/styles/component/Register.css';
 
 const Register = () => (
-        <div className= "container p-4">
+        <div id= "container_register" className= "container p-4">
 
             <div id="card_register" className="row">
-                <div className="col-md-12">
+                <div className="col-md-10">
                     <div className="card">
                         <div id="card_title_register" className="card-header">
                             <h5 className="card-title" >Register and be part of us</h5>
@@ -27,9 +27,9 @@ const Register = () => (
                         </div>
                         <div className="form-group col-md-5">
                             <label htmlFor="inputTelefono">Email</label>
-                            <input required type="text" className="form-control" id="inputEmail4" name="email" name="email" />
+                            <input required type="email" className="form-control" id="inputEmail4" name="email" name="email" />
                         </div>
-                        <div className="form-group col-md-3">
+                        <div className="form-group col-md-5">
                             <label htmlFor="inputTelefono">Telefono</label>
                             <input required type="text" className="form-control" id="inputTelefono" name="phone" />
                         </div>
@@ -50,6 +50,10 @@ const Register = () => (
                         <div className="form-group col-md-5">
                             <label htmlFor="inputPass">Password</label>
                             <input required type="password" className="form-control" id="inputPass" name="password" />
+                        </div>
+                        <div className="form-group col-md-5">
+                            <label htmlFor="inputPass">Repeat password</label>
+                            <input required type="password" className="form-control" id="inputPass" name="repeatPassword" />
                         </div>
                     </div>
                     <button type="submit" className="btn btn-success">Guardar</button>
