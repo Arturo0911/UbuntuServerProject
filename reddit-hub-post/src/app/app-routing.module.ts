@@ -5,6 +5,8 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {FollowingsComponent} from './components/followings/followings.component';
 import {AboutComponent } from './components/about/about.component';
+import {AuthGuard} from './auth.guard';
+
 
 const routes: Routes = [
   {

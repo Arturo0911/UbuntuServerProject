@@ -8,7 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FollowingsComponent } from './components/followings/followings.component';
 import { AboutComponent } from './components/about/about.component';
 import {HttpClientModule} from '@angular/common/http';
-
+import {AuthGuard} from './auth.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
     RegisterComponent,
     LoginComponent,
     FollowingsComponent,
-    AboutComponent
+    AboutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,9 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

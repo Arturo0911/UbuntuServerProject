@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   signIn(){
     this.authService.signIn(this.userLogin)
       .subscribe(res =>{
-        console.log(res.response.jwt)
+        //console.log(res.response.jwt)
         localStorage.setItem("token", res.response.jwt)
       }, 
       err => {
