@@ -1,1 +1,54 @@
-<p>login works!</p>
+<!--<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Register and be part of us.</h5>
+            </div>
+            <div class="card-body">
+                <form (submit)="signIn()">
+                    <div class="form-group">
+                        <div class="form-group col-md-7">
+                            <label htmlFor="inputEmail4">Email</label>
+                            <input required type="text" [(ngModel)]="userLogin.email" class="form-control" id="inputEmail4" name="email" name="email" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label htmlFor="inputPass">Password</label>
+                            <input required type="password" [(ngModel)]="userLogin.password" class="form-control" id="inputPass" name="password" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div class="container p-4">
+    <div class="row">
+
+        <div class="col-md-5 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5 class="card-title">Ingreso</h5>
+                </div>
+                <div class="card-body text-left">
+                    <form (submit)="signIn()">
+                        <div class="form-group">
+                            <strong><label for="InputUser">Email</label></strong>
+                            <input required type="text" [(ngModel)]="userLogin.email" class="form-control" id="inputEmail4" name="email" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <strong><label for="InputPass">Password</label></strong>
+                            <input required type="password" [(ngModel)]="userLogin.password" class="form-control" id="inputPass" name="password" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

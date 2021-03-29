@@ -1,7 +1,7 @@
-export interface iUser {
+export interface iUserSignup {
     userName: string,
     userLastName: string,
-    userBirth: Date | 'dd/MM/yyyy',
+    userBirth: Date,
     gender: string,
     phoneNumber: string,
     status: string,
