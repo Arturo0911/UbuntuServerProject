@@ -16,8 +16,8 @@
                             <input required type="text" [(ngModel)]="user.userLastName" class="form-control" id="inputApellido" name="lname" />
                         </div>
                         <div class="form-group col-md-6">
-                            <label htmlFor="inputTelefono">Date birth</label>
-                            <input required type="date" ng-model="datevalue" [(ngModel)]="user.userBirth" class="form-control" id="inputEmail4" name="email" name="email" />
+                            <label htmlFor="inputBirth">Date birth</label>
+                            <input required type="date" [(ngModel)]="user.userBirth" class="form-control" id="inputBirth" name="birth" />
                         </div>
                         <div class="form-group col-md-6">
                             <label htmlFor="inputTelefono">Telefono</label>
@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label htmlFor="inputTelefono">Email</label>
+                            <label htmlFor="inputEmail4">Email</label>
                             <input required type="text" [(ngModel)]="user.email" class="form-control" id="inputEmail4" name="email" name="email" />
                         </div>
                         <div class="form-group col-md-6">
@@ -42,8 +42,8 @@
                             <input required type="password" [(ngModel)]="user.password" class="form-control" id="inputPass" name="password" />
                         </div>
                         <div class="form-group col-md-6">
-                            <label htmlFor="inputPass">Repeat password</label>
-                            <input required type="password" class="form-control" id="inputPass" name="repeatPassword" />
+                            <label htmlFor="inputRepeatPass">Repeat password</label>
+                            <input required type="password" class="form-control" id="inputRepeatPass" name="repeatPassword" />
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Save</button>

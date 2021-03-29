@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {iUser} from './IUser';
-
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -33,11 +33,13 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     //this.user.userBirth  =
-    console.log(this.user.userBirth.getMonth());
-    
+    //console.log(this.user.userBirth.getMonth());
+    let datePipe = new DatePipe("en-US");
+    this.user.userBirth = datePipe.transform(this.user.userBirth, "dd/MM/yyyy");
+    this.user.status = "Active";
     console.log(this.user);
     //this.user.userBirth = new Date();
-    /*this.authService.signUp(this.user)
+    this.authService.signUp(this.user)
       .subscribe(
         res => {
           console.log(res);
@@ -47,7 +49,7 @@ export class RegisterComponent implements OnInit {
           console.log(err);
 
         }
-      );*/
+      );
   }
 
 }
