@@ -32,13 +32,9 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp() {
-    //this.user.userBirth  =
-    //console.log(this.user.userBirth.getMonth());
     let datePipe = new DatePipe("en-US");
     this.user.userBirth = datePipe.transform(this.user.userBirth, "dd/MM/yyyy");
     this.user.status = "Active";
-    console.log(this.user);
-    //this.user.userBirth = new Date();
     this.authService.signUp(this.user)
       .subscribe(
         res => {
