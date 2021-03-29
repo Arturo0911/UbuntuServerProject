@@ -6,6 +6,7 @@ import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JsonResponseBody;
 import com.company.ubuntuserver.ubuntu_server.utilities.messages.ServerMessages;
 import lombok.extern.java.Log;
+import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/allFollowers/{userId}")
-    ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
+    public ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
@@ -39,7 +40,7 @@ public class UserController {
 
 
     @DeleteMapping("/unFollow/{userId}/{userToUnFollow}")
-    ResponseEntity<JsonResponseBody> unFollow(@Valid @PathVariable("userId") Integer userId,
+    public ResponseEntity<JsonResponseBody> unFollow(@Valid @PathVariable("userId") Integer userId,
                                               @Valid @PathVariable("userToUnFollow") Integer userToUnFollow){
         try {
             userService.deleteFollowing(userId, userToUnFollow);
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     @PostMapping("/follow/{userFollower}/{userToFollow}")
-    ResponseEntity<JsonResponseBody> follow(@Valid @PathVariable("userFollower") Integer userFollower,
+    public ResponseEntity<JsonResponseBody> follow(@Valid @PathVariable("userFollower") Integer userFollower,
                                             @Valid @PathVariable("userToFollow") Integer userToFollow){
         try {
             userService.followUser(userFollower, userToFollow);
@@ -70,7 +71,7 @@ public class UserController {
 
 
     @GetMapping("/allUsers")
-    ResponseEntity<JsonResponseBody> findAllUsers(){
+    public ResponseEntity<JsonResponseBody> findAllUsers(){
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
@@ -83,7 +84,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/newUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<JsonResponseBody> newUser( @RequestBody User user){
+    public ResponseEntity<JsonResponseBody> newUser( @RequestBody User user){
         try {
             //log.info((Supplier<String>) user);
 
@@ -101,7 +102,7 @@ public class UserController {
     }
 
     @GetMapping("/findUser/{userId}")
-    ResponseEntity<JsonResponseBody> findOneUser(@Valid @PathVariable("userId") Integer userId){
+    public ResponseEntity<JsonResponseBody> findOneUser(@Valid @PathVariable("userId") Integer userId){
         try {
 
             return ResponseEntity.status(HttpStatus.OK)
@@ -115,7 +116,7 @@ public class UserController {
     }
 
     @PutMapping( value =  "/updateUser",consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<JsonResponseBody>updateUser(@Valid @RequestBody User user){
+    public ResponseEntity<JsonResponseBody>updateUser(@Valid @RequestBody User user){
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
@@ -128,7 +129,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteUser/{userId}")
-    ResponseEntity<JsonResponseBody> deleteUser(@Valid @PathVariable("userId") Integer userId){
+    public ResponseEntity<JsonResponseBody> deleteUser(@Valid @PathVariable("userId") Integer userId){
         try {
             userService.deleteUser(userId);
             return ResponseEntity.status(HttpStatus.OK)
@@ -137,6 +138,21 @@ public class UserController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }
+
+
+    @GetMapping("/profile/{userEmail}")
+    public ResponseEntity<JsonResponseBody> getProfile(@PathVariable("userEmail") String userEmail){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,
+                            userService.profileFindAll(userEmail)));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(),
                             ServerMessages.errorMessage, e.toString()));
         }
     }

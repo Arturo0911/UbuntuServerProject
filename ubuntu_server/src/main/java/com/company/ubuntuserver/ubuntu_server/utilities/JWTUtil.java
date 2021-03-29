@@ -25,12 +25,14 @@ public class JWTUtil {
                 .signWith(SignatureAlgorithm.HS256, KEY).compact();
     }
 
+
     public boolean validateToken(String jwtToken, UserDetails userDetails ){
 
-        final String userEmail = extractUsername(jwtToken);
+        String userEmail = extractUsername(jwtToken);
         return userEmail.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken);
         //return userDetails.getUsername().equals(extractUsername(jwtToken)) && !isTokenExpired(jwtToken);
     }
+
 
     public String extractUsername(String token){
         return getClaims(token).getSubject();

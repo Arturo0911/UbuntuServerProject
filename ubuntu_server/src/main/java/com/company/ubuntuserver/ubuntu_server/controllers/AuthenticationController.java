@@ -60,7 +60,7 @@ public class AuthenticationController {
                     .body(new JsonResponseBody(HttpStatus.OK.value(), ServerMessages.successMessage, loginStructure));
         }catch (Exception e ){
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), ServerMessages.errorMessage, e.toString()));
+                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), ServerMessages.errorMessage, "Error by: "+e.toString()));
         }
 
     }

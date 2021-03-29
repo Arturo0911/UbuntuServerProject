@@ -42,4 +42,9 @@ public class UserStructure {
         return allUsersManagement;
     }
 
+    public User formatProfile(User user){
+        formatUsers(user.getUsers());
+        return  user;
+    }
+
 }

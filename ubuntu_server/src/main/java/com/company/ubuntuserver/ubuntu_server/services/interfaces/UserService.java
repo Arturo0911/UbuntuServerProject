@@ -29,6 +29,9 @@ public interface UserService {
 
     User findByEmail(String email);
 
+
+    User profileFindAll(String email);
+
     //Boolean userExists(String email);
 
 

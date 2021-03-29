@@ -144,6 +144,11 @@ public class UserServiceImplementation implements UserService {
         return null;
     }
 
+    @Override
+    public User profileFindAll(String email) {
+        return userStructure.formatProfile(iUser.findUserByEmail(email));
+    }
+
 
     /**
      *
