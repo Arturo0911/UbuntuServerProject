@@ -8,7 +8,7 @@ import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInD
 import java.util.HashMap;
 import java.util.List;
 
-public interface UserService {
+public interface IUserService {
 
     User newUser(User user) throws EmailExistsException;
     List<User> getAllUsers();

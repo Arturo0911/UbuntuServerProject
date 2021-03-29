@@ -2,6 +2,7 @@ package com.company.ubuntuserver.ubuntu_server.security.filter;
 
 import com.company.ubuntuserver.ubuntu_server.config.UserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JWTUtil;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+@Log
 @Component
 public class JWTFilterRequest extends OncePerRequestFilter {
 
@@ -31,8 +32,9 @@ public class JWTFilterRequest extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
-
+        log.info("Authorization: "+authorizationHeader);
         if (authorizationHeader != null &&  authorizationHeader.startsWith("Bearer ")){
+            //String jwt = authorizationHeader.split(" ")[1];
             String jwt = authorizationHeader.split(" ")[1];
             String username = jwtUtil.extractUsername(jwt);
 

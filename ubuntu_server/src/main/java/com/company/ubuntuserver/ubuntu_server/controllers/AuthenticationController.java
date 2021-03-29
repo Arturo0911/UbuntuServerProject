@@ -50,7 +50,7 @@ public class AuthenticationController {
             Authentication auth = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
             authenticationManager.authenticate(auth);
 
-            final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+            UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
             String jwt = jwtUtil.generateToken(user.getEmail());
             User logged = iUser.findUserByEmail(user.getEmail());
             loginStructure.setJwt(jwt);

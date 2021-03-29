@@ -2,11 +2,9 @@ package com.company.ubuntuserver.ubuntu_server.controllers;
 
 
 import com.company.ubuntuserver.ubuntu_server.entities.User;
-import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
+import com.company.ubuntuserver.ubuntu_server.services.interfaces.IUserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JsonResponseBody;
 import com.company.ubuntuserver.ubuntu_server.utilities.messages.ServerMessages;
-import lombok.extern.java.Log;
-import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,15 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.function.Supplier;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @GetMapping("/allFollowers/{userId}")
     public ResponseEntity<JsonResponseBody> findFollowings(@Valid @PathVariable("userId") Integer userid){

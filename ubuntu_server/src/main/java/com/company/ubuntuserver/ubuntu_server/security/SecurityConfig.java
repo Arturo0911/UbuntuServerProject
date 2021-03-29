@@ -46,12 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                //.antMatchers(HttpMethod.GET, "/user/allFollowers/{userId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/user/newUser").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers( "/**/newUser").permitAll()
+                .antMatchers("/**/login").permitAll()
+                .anyRequest().authenticated().and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
     }

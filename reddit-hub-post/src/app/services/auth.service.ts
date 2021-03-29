@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpInterceptor, HttpRequest, HttpHandler} from '@angular/common/http';
 import {Router} from '@angular/router';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +26,27 @@ export class AuthService {
     return !!localStorage.getItem("token");
   }
 
-  getToken():string | null{
+  getToken(){
     return localStorage.getItem("token");
   }
 
   logOut(){
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
     this.router.navigate(["/login"]);
+    localStorage.setItem("token", "");
+    localStorage.setItem("email", "");
+    
   }
+
+
+  /*onDeleteHeaders(req:HttpRequest<any>, next:HttpHandler){
+    let deleteHeaders = req.clone({
+        setHeaders:{
+
+        }
+    });
+
+    return next.handle(deleteHeaders);
+  }*/
 
 
 }

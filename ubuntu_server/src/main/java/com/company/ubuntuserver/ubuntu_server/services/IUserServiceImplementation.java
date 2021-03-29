@@ -3,7 +3,7 @@ package com.company.ubuntuserver.ubuntu_server.services;
 
 import com.company.ubuntuserver.ubuntu_server.daos.IUser;
 import com.company.ubuntuserver.ubuntu_server.entities.User;
-import com.company.ubuntuserver.ubuntu_server.services.interfaces.UserService;
+import com.company.ubuntuserver.ubuntu_server.services.interfaces.IUserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.EmailExistsException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImplementation implements UserService {
+public class IUserServiceImplementation implements IUserService {
 
     @Autowired
     IUser iUser;
@@ -117,22 +117,6 @@ public class UserServiceImplementation implements UserService {
         return null;
     }
 
-    /*@Override
-    public User authentication(String email, String password) throws UserNotInDataBaseException {
-
-        try {
-            User user = iUser.findUserByEmail(email);
-
-            if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
-                return user;
-            }else{
-                return null;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }*/
 
     @Override
     public String createJWT(String email) throws NotSupportedEncodingException {

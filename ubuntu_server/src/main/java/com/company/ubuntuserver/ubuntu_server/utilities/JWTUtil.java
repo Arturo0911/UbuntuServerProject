@@ -2,6 +2,7 @@ package com.company.ubuntuserver.ubuntu_server.utilities;
 
 
 import io.jsonwebtoken.*;
+import lombok.extern.java.Log;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log
 @Component
 public class JWTUtil {
 
@@ -35,7 +37,13 @@ public class JWTUtil {
 
 
     public String extractUsername(String token){
-        return getClaims(token).getSubject();
+        try{
+            //log.info(token);
+            return getClaims(token).getSubject();
+        }catch (Exception e ){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public boolean isTokenExpired(String token){
@@ -53,7 +61,7 @@ public class JWTUtil {
     }
 
 
-    public String getJWTFromHttpRequest(HttpServletRequest request){
+    /*public String getJWTFromHttpRequest(HttpServletRequest request){
         String jwt = null;
         if(request.getHeader("jwt") != null){
             // THen the jwt it's on the header of the request
@@ -70,7 +78,7 @@ public class JWTUtil {
         return jwt;
     }
 
-    /*public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {
+    public String generateJWT(String email, String userName, Date date) throws UnsupportedEncodingException {
         String jwt = Jwts.builder()
                 .setSubject(email)
                 .setExpiration(date)

@@ -11,9 +11,11 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private authService:AuthService){}
 
   intercept(req:HttpRequest<any>, next:HttpHandler){
-    const tokenizeRequest = req.clone({
+    let tokenizeRequest = req.clone({
       setHeaders:{
-        Authorization: `Bearer ${this.authService.getToken()}`
+        'Content-Type' : 'application/json; charset=utf-8',
+        'Accept'       : 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
       }
     });
 
