@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label htmlFor="inputTelefono">Date birth</label>
-                            <input required type="date" [(ngModel)]="user.userBirth" class="form-control" id="inputEmail4" name="email" name="email" />
+                            <input required type="date" ng-model="datevalue" [(ngModel)]="user.userBirth" class="form-control" id="inputEmail4" name="email" name="email" />
                         </div>
                         <div class="form-group col-md-6">
                             <label htmlFor="inputTelefono">Telefono</label>
@@ -27,8 +27,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label htmlFor="inputApartment">Gender</label>
-                            <select id="inputApartment" [(ngModel)]="user.gender" class="form-control" name="apartment">
-                                <option value>Male</option>
+                            <select [(ngModel)]="user.gender" class="form-control" name="gender">
+                                <option selected>Male</option>
                                 <option>Female</option>
                                 <option>Non binary</option>
                             </select>
