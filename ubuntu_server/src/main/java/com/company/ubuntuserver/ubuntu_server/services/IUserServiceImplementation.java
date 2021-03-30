@@ -40,6 +40,15 @@ public class IUserServiceImplementation implements IUserService {
     }
 
     @Override
+    public void saveMultipleUsers(List<User> users) {
+
+        for (User user: users){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        iUser.saveAll(users);
+    }
+
+    @Override
     public List getAllUsers() {
         return userStructure.formatUsers(iUser.findAll());
     }
@@ -112,10 +121,7 @@ public class IUserServiceImplementation implements IUserService {
         iUser.save(userFollow.get());
     }
 
-    @Override
-    public void saveMultipleUsers(List<User> users) {
-        iUser.saveAll(users);
-    }
+
 
     @Override
     public User profileFindAll(String email) {
