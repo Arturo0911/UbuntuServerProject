@@ -20,6 +20,7 @@ public interface IUserService {
     void deleteFollowing(Integer userId, Integer user);
     void followUser(Integer userFollower, Integer userToFollow);
 
+    void saveMultipleUsers(List<User>users);
 
     // Before login service
 

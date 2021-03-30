@@ -18,12 +18,16 @@ create table user_preferences(
 
 );
 
+
+insert into users (user_name, user_last_name, user_created) values ();
+
+
 create table users (
     
     user_id int(11) PRIMARY KEY auto_increment,
     user_name varchar(50) not null,
     user_last_name varchar(50) not null,
-    user_crated datetime(6) not null,
+    user_created datetime(6) not null,
     user_birth datetime(6) not null,
     user_status varchar(10) not null,
     user_phone_number varchar(25) null,

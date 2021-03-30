@@ -12,6 +12,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profile:ProfileRenderService) { }
 
+   
+
+
   ngOnInit(): void {
     this.profile.renderProfile()
       .subscribe(

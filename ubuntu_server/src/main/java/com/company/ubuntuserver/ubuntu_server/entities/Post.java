@@ -23,6 +23,11 @@ public class Post {
     @Column(name = "post_id")
     private Integer postId;
 
+    @Column(name = "post_title")
+    @Getter @Setter
+    @NotNull
+    private String postTitle;
+
     @Column(name = "post_content")
     @Getter @Setter
     @NotNull

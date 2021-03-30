@@ -58,6 +58,11 @@ public class User {
     private String status;
 
     @Getter @Setter
+    @Column(name = "user_image", length = 500)
+    @NotNull @NotBlank
+    private String imageUrl;
+
+    @Getter @Setter
     @Column(name = "user_email", length = 30)
     @NotNull @NotBlank
     private String email;

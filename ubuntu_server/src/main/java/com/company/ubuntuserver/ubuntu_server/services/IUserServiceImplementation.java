@@ -113,6 +113,11 @@ public class IUserServiceImplementation implements IUserService {
     }
 
     @Override
+    public void saveMultipleUsers(List<User> users) {
+        iUser.saveAll(users);
+    }
+
+    @Override
     public User profileFindAll(String email) {
         return userStructure.formatProfile(iUser.findUserByEmail(email));
     }

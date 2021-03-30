@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -149,6 +150,21 @@ public class UserController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(),
+                            ServerMessages.errorMessage, e.toString()));
+        }
+    }
+
+    @PostMapping("/saveUsers")
+    public ResponseEntity<JsonResponseBody> saveMultipleUsers(@RequestBody List<User> users){
+        try {
+            userService.saveMultipleUsers(users);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage, "Data was saved successfully"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
                             ServerMessages.errorMessage, e.toString()));
         }
     }

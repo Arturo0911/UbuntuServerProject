@@ -1,0 +1,99 @@
+[{
+        "userName": "Arturo Francesco ",
+        "userLastName": "Negreiros Samanez",
+        "userBirth": "09/11/1992",
+        "gender": "Male",
+        "phoneNumber": "0963951028",
+        "status": "Active",
+        "imageUrl": "https://media-exp1.licdn.com/dms/image/C4E03AQESUZg85pNH9g/profile-displayphoto-shrink_400_400/0/1580849701441?e=1622678400&v=beta&t=qrgGvova1efDBCzhLWKXRitkxY6_0-ZrSLYn9oR-vWg",
+        "email": "payload@payload.com",
+        "password": "Metallica rules"
+    },
+    {
+        "userName": "Favio Jose ",
+        "userLastName": "Samanez Rosales",
+        "userBirth": "21/10/1989",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "fjsamanez@outlook.com",
+        "password": "123"
+    },
+    {
+        "userName": "Elon Reeve ",
+        "userLastName": "Musk",
+        "userBirth": "28/06/1971",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "emusk@tesla.com",
+        "password": "123"
+    },
+    {
+        "userName": "Satya ",
+        "userLastName": "Nadella",
+        "userBirth": "19/08/1967",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "nadella@microsoft.com",
+        "password": "123"
+    },
+    {
+        "userName": "Tim Donald ",
+        "userLastName": "Cook",
+        "userBirth": "01/11/1960",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "cook@apple.com",
+        "password": "123"
+    },
+    {
+        "userName": "Dustin Aaron ",
+        "userLastName": "Moskovitz",
+        "userBirth": "22/05/1984",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "dmoskovitz@facebook.com",
+        "password": "123"
+    },
+    {
+        "userName": "Christopher Jonh ",
+        "userLastName": "Cornell",
+        "userBirth": "20/07/1964",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://www.latercera.com/resizer/2pvlVHwA8TLp-6dr8bzCt-1fNpo=/900x600/smart/arc-anglerfish-arc2-prod-copesa.s3.amazonaws.com/public/4XJ6AMFO3RAT3GBJA5DSZ3J224.jpg",
+        "email": "cornell@audioslave.com",
+        "password": "123"
+    }, {
+        "userName": "Leonard Albert ",
+        "userLastName": "Kravitz",
+        "userBirth": "26/05/1964",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "lkravitz@outlook.com",
+        "password": "123"
+    },
+    {
+        "userName": "Chester",
+        "userLastName": "Bennington",
+        "userBirth": "20/03/1976",
+        "gender": "Male",
+        "phoneNumber": "0999392742",
+        "status": "Active",
+        "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2017/03/reddit-alien-red-2060x1030.jpg",
+        "email": "cbennington@linkinpark.com",
+        "password": "123"
+    }
+]
