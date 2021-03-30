@@ -113,22 +113,6 @@ public class IUserServiceImplementation implements IUserService {
     }
 
     @Override
-    public User authentication(String email, String password) throws UserNotInDataBaseException {
-        return null;
-    }
-
-
-    @Override
-    public String createJWT(String email) throws NotSupportedEncodingException {
-        return null;
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        return null;
-    }
-
-    @Override
     public User profileFindAll(String email) {
         return userStructure.formatProfile(iUser.findUserByEmail(email));
     }
@@ -147,7 +131,5 @@ public class IUserServiceImplementation implements IUserService {
         }else{
             return false;
         }
-
-        //return user.getEmail() == null;
     }
 }

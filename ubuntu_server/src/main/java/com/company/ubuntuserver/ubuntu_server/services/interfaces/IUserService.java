@@ -23,11 +23,11 @@ public interface IUserService {
 
     // Before login service
 
-    User authentication(String email, String password) throws UserNotInDataBaseException;
+    /*User authentication(String email, String password) throws UserNotInDataBaseException;
 
     String createJWT(String email) throws NotSupportedEncodingException;
 
-    User findByEmail(String email);
+    User findByEmail(String email);*/
 
 
     User profileFindAll(String email);

@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -46,4 +47,13 @@ public class Post {
     void generateDate(){
         this.postDate = new Date();
     }
+
+    /**
+     * Management the like per user.
+     */
+    @OneToMany
+    @Getter @Setter
+    private List<User> userLikes;
+
+
 }
