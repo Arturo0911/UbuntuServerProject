@@ -10,10 +10,12 @@ import java.util.Optional;
 
 public interface PostService {
 
-    Post newPost(Post post);
-    List<Post> getAllPost(Integer userId);
+    Post newPost(Post post, Integer userId);
+    Object getAllPost(Integer userId);
     Post findOnePost(Integer postId) throws PostNotInDataBaseException;
     void deletePost(Integer userId,Post post);
     void updatePost(Integer userId, Post post);
-    List<Post> findPostUnderDate(User user, Date datePost);
+    Object findPostUnderDate(User user, Date datePost);
+
+    void likeToPost(Integer postId,Integer userId);
 }

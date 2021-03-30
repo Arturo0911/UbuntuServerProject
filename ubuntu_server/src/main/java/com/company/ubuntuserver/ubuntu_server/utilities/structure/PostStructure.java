@@ -6,6 +6,7 @@ import com.company.ubuntuserver.ubuntu_server.entities.User;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -46,5 +47,31 @@ public class PostStructure {
             }
         }
         return posts;
+    }
+
+    /**
+     * Manage the likes per post
+     */
+
+    public HashMap formatPostStructure(Post post){
+
+        HashMap<Object, Object> postStructures = new HashMap<>();
+        postStructures.put("Title", post.getPostTitle());
+        postStructures.put("Content", post.getPostContent());
+        postStructures.put("Created at", post.getPostDate());
+        postStructures.put("Likes", post.getUserLikes().size());
+
+
+        return postStructures;
+    }
+
+
+    public List formatPostStructures(List<Post>posts){
+        List<HashMap<Object, Object>> postsToFormat = new ArrayList<>();
+        for (Post post: posts){
+            postsToFormat.add(formatPostStructure(post));
+        }
+
+        return postsToFormat;
     }
 }

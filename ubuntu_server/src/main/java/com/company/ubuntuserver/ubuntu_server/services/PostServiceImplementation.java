@@ -30,13 +30,35 @@ public class PostServiceImplementation implements PostService {
     private PostStructure postStructure;
 
     @Override
-    public Post newPost(@Valid Post post) {
-        return iPost.save(post);
+    public Post newPost(Post post, Integer userId) {
+
+        try {
+            Optional<User> user = iUser.findById(userId);
+            User userToPost = user.get();
+
+            if (userToPost != null){
+                iPost.save(post);
+                userToPost.getPosts().add(post);
+                iUser.save(userToPost);
+                return post;
+            }else{
+                return null;
+            }
+
+
+        }catch (Exception e ){
+            e.printStackTrace();
+            return null;
+        }
+
+
+
+
     }
 
     @Override
-    public List<Post> getAllPost(@Valid Integer userId) {
-        return iUser.findById(userId).get().getPosts();
+    public Object getAllPost(@Valid Integer userId) {
+        return postStructure.formatPostStructures(iUser.findById(userId).get().getPosts());
     }
 
     @Override
@@ -66,7 +88,23 @@ public class PostServiceImplementation implements PostService {
     }
 
     @Override
-    public List<Post> findPostUnderDate(@Valid User user,@Valid Date datePost) {
+    public Object findPostUnderDate(@Valid User user,@Valid Date datePost) {
         return postStructure.findPostsUnderDate(user,datePost);
+    }
+
+    @Override
+    public void likeToPost(Integer postId, Integer userId) {
+        try {
+            Optional<Post> post = iPost.findById(postId);
+            Optional<User> user = iUser.findById(userId);
+
+            if (post != null && user != null){
+                post.get().getUserLikes().add(user.get());
+                iPost.save(post.get());
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+
+        }
     }
 }
