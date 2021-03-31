@@ -10,23 +10,24 @@ import {ProfileRenderService} from '../../services/profile-render.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private profile:ProfileRenderService) { }
+  constructor(public profile:ProfileRenderService) { }
 
-   
+     
 
 
   ngOnInit(): void {
+    this.getUserProfile();
+  }
+
+  getUserProfile(){
     this.profile.renderProfile()
-      .subscribe(
-        res =>{
-          console.log(res.response);
-          
-        },
-        err => {
-          console.log(err);
-          
-        }
-      );
+    .subscribe(
+      res => this.profile.userProfile = res,
+      err => {
+        console.log(err);
+        
+      }
+    );
   }
 
 }

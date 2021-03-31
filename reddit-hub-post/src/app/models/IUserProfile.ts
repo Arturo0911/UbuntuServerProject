@@ -2,8 +2,17 @@ export interface iUserProfile {
     userId: number,
     userName: string,
     userLastName: string,
-    following: iUserProfile[],
+    users: iUserProfile[],
     posts:iPosts[],
+    email:string,
+    imageUrl:string,
+    phoneNumber:string,
+    preferences: iPreferences,
+    userBirth: string,
+    userCreatedAt:string,
+    gender:string,
+    password:string,
+    status:string
 
 }
 
@@ -11,13 +20,16 @@ export interface iPosts {
     postId: number,
     postTitle: string,
     postContent:string,
-    postCreatedAt:Date,
-    postLikes: iUserProfile[]
+    postDate:string,
+    userLikes: iUserProfile[],
+    postModify: string | null,
+
 }
 
 export interface iPreferences {
     preferencesId: number,
     currentlyStatus: string,
+    codePreferences:string,
     ranking: number,
     experience: string
 }
