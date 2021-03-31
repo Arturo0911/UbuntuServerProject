@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileRenderService} from '../../services/profile-render.service';
 
-
+/**
+ * @author Arturo Negreiros 
+ */
 
 @Component({
   selector: 'app-profile',
@@ -16,9 +18,7 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getUserProfile();
-    //console.log(this.profile.userProfile);
-    
+    this.getUserProfile();    
   }
 
   getUserProfile(){
@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       res => {
         this.profile.userProfile = [res.response]
-        console.log(this.profile.userProfile);
         },
 
       err => {

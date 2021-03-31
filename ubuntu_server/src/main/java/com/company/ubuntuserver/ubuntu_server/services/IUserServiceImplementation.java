@@ -7,8 +7,10 @@ import com.company.ubuntuserver.ubuntu_server.services.interfaces.IUserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.EmailExistsException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.NotSupportedEncodingException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
+import com.company.ubuntuserver.ubuntu_server.utilities.structure.PostStructure;
 import com.company.ubuntuserver.ubuntu_server.utilities.structure.UserStructure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,10 @@ public class IUserServiceImplementation implements IUserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    PostStructure postStructure;
 
     @Override
     public User newUser(User user) throws EmailExistsException {
@@ -144,30 +150,32 @@ public class IUserServiceImplementation implements IUserService {
         }
     }
 
-
     @Override
     public Object findUserByUserName(String userName){
 
         try{
-            Optional<User> nameUser = iUser.findUserByUserName(userName);
-
-            if (nameUser.isPresent()){
-                return userStructure.formatFindUser(nameUser.get());
+            User nameUser = iUser.findUserByUserName(userName);
+            if (nameUser != null){
+                return userStructure.formatFindUser(nameUser);
+            }else{
+                return null;
             }
-            
+
         }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
+
     @Override
     public Object findUserByUserLastName(String userLastName){
         try{
-            Optional<User> lastNameUser = iUser.findUserByUserLastName(userLastName);
-
-            if (lastNameUser.isPresent()){
-                return userStructure.formatFindUser(lastNameUser.get());
+            User lastNameUser = iUser.findUserByUserLastName(userLastName);
+            if (lastNameUser != null){
+                return userStructure.formatFindUser(lastNameUser);
+            }else{
+                return null;
             }
         }catch (Exception e) {
             e.printStackTrace();

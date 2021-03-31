@@ -5,6 +5,7 @@ import com.company.ubuntuserver.ubuntu_server.entities.User;
 import com.company.ubuntuserver.ubuntu_server.services.interfaces.IUserService;
 import com.company.ubuntuserver.ubuntu_server.utilities.JsonResponseBody;
 import com.company.ubuntuserver.ubuntu_server.utilities.messages.ServerMessages;
+import com.company.ubuntuserver.ubuntu_server.utilities.structure.FindUserAsynchronous;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -166,6 +167,36 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
                             ServerMessages.errorMessage, e.toString()));
+        }
+    }
+
+
+    @PostMapping("/searchUser")
+    public ResponseEntity<JsonResponseBody> findAsynchronous(@RequestBody FindUserAsynchronous user){
+        try {
+            if (userService.findUserByUserName(user.getUserName()) != null){
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new JsonResponseBody(HttpStatus.OK.value(),
+                                ServerMessages.successMessage,
+                                userService.findUserByUserName(user.getUserName())));
+            }else if (userService.findUserByUserName(user.getUserName()) != null){
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new JsonResponseBody(HttpStatus.OK.value(),
+                                ServerMessages.successMessage,
+                                userService.findUserByUserLastName(user.getUserLastName())));
+            }else{
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new JsonResponseBody(HttpStatus.OK.value(),
+                                ServerMessages.successMessage, "Task not found"));
+            }
+            /*return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(),
+                            ServerMessages.successMessage,
+                            userService.findUserByUserName(user.getUserName())));*/
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
+                            ServerMessages.errorMessage, "Error by: "+e.toString()));
         }
     }
 

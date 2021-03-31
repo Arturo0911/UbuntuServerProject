@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {findUser} from '../../models/IUserProfile';
+import {FindUserService} from '../../services/find-user.service';
+
+
 
 @Component({
   selector: 'app-find-user',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindUserComponent implements OnInit {
 
-  constructor() { }
+  findUserForm:findUser | any = {}
+
+  userFound 
+  constructor(private findUserService:FindUserService) { }
 
   ngOnInit(): void {
+  }
+
+  findUser(){
+    this.findUserService.findUser(this.findUserForm)
+      .subscribe(res =>{
+          
+      }, err =>{
+
+      })
   }
 
 }

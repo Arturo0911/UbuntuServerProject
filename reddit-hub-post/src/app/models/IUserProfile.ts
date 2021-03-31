@@ -33,3 +33,29 @@ export interface iPreferences {
     ranking: number,
     experience: string
 }
+
+
+export interface findUser {
+    userName: string,
+    userLastName: string
+}
+
+export interface FoundUser {
+    userId: number,
+    userName: string,
+    userLastName: string,
+    followers: number,
+    posts:postFoundUser[],
+    email:string,
+    imageUrl:string,
+    phoneNumber:string,
+    preferences: iPreferences,
+    userBirth: string,
+}
+
+interface postFoundUser {
+    Content: string,
+    Title: string,
+    Likes: number,
+    CratedAt: string
+}

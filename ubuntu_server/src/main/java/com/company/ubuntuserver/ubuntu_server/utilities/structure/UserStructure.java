@@ -21,6 +21,9 @@ public class UserStructure {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private PostStructure postStructure;
+
     public HashMap formatUser(User user){
 
         HashMap<Object, Object> userManagement = new HashMap<>();
@@ -49,17 +52,12 @@ public class UserStructure {
 
     public HashMap formatFindUser(User user){
         HashMap<Object, Object> userFound = new HashMap<>();
-        userFound.put("userId",user.getUserName());
+        userFound.put("userId",user.getUserId());
         userFound.put("userName",user.getUserName());
-        userFound.put("userLastName",user.getUserName());
-        userFound.put("followers",user.getUsers());
-        userFound.put("posts",user.getPosts());
-        userFound.put("preferences",user.getPreferences());
-        /*userFound.put("userName",user.getUserName());
-        userFound.put("userName",user.getUserName());
-        userFound.put("userName",user.getUserName());
-        userFound.put("userName",user.getUserName());
-        userFound.put("userName",user.getUserName());*/
+        userFound.put("userLastName",user.getUserLastName());
+        userFound.put("followers",user.getUsers().size()); // i don't want to the whole descriptions of of followers, only the number of this
+        userFound.put("posts",postStructure.formatPostStructures(user.getPosts()));
+        userFound.put("preferences",user.getPreference());
 
         return userFound;
     }
