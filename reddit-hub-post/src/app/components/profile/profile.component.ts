@@ -17,17 +17,31 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
+    //console.log(this.profile.userProfile);
+    
   }
 
   getUserProfile(){
     this.profile.renderProfile()
     .subscribe(
-      res => this.profile.userProfile = res,
+      res => {
+        this.profile.userProfile = [res.response]
+        console.log(this.profile.userProfile);
+        },
+
       err => {
         console.log(err);
         
       }
     );
+  }
+
+  onPostButton(){
+
+  }
+
+  onFindUserButton(){
+    
   }
 
 }

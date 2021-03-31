@@ -9,6 +9,7 @@ import com.company.ubuntuserver.ubuntu_server.services.interfaces.PostService;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.PostNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.errorhandlers.UserNotInDataBaseException;
 import com.company.ubuntuserver.ubuntu_server.utilities.structure.PostStructure;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
+@Log
 @Service
 public class PostServiceImplementation implements PostService {
 
@@ -34,16 +37,13 @@ public class PostServiceImplementation implements PostService {
 
         try {
             Optional<User> user = iUser.findById(userId);
-            User userToPost = user.get();
+            //User userToPost = user.get();
 
-            if (userToPost != null){
-                iPost.save(post);
-                userToPost.getPosts().add(post);
-                iUser.save(userToPost);
-                return post;
-            }else{
-                return null;
-            }
+            iPost.save(post);
+            log.info(user.get().getUserName());
+            user.get().getPosts().add(post);
+            iUser.save(user.get());
+            return post;
 
 
         }catch (Exception e ){

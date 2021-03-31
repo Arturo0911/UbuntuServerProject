@@ -143,4 +143,36 @@ public class IUserServiceImplementation implements IUserService {
             return false;
         }
     }
+
+
+    @Override
+    public Object findUserByUserName(String userName){
+
+        try{
+            Optional<User> nameUser = iUser.findUserByUserName(userName);
+
+            if (nameUser.isPresent()){
+                return userStructure.formatFindUser(nameUser.get());
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Object findUserByUserLastName(String userLastName){
+        try{
+            Optional<User> lastNameUser = iUser.findUserByUserLastName(userLastName);
+
+            if (lastNameUser.isPresent()){
+                return userStructure.formatFindUser(lastNameUser.get());
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

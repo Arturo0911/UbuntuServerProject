@@ -7,6 +7,8 @@ import {FollowingsComponent} from './components/followings/followings.component'
 import {AboutComponent } from './components/about/about.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {AuthGuard} from './auth.guard';
+import {FindUserComponent} from './components/find-user/find-user.component';
+
 
 
 const routes: Routes = [
@@ -29,6 +31,10 @@ const routes: Routes = [
   },{
     path: 'profile',
     component:ProfileComponent,
+    canActivate: [AuthGuard]
+  },{
+    path: 'find',
+    component:FindUserComponent,
     canActivate: [AuthGuard]
   }
 ];

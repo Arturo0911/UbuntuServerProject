@@ -38,7 +38,6 @@ public class User {
 
     @Getter @Setter
     @JsonFormat(pattern="dd/MM/yy")
-    //@NotNull @NotBlank
     @Column(name = "user_birth")
     private Date userBirth;
 
@@ -82,8 +81,13 @@ public class User {
     @Getter @Setter
     private List<User> users;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     @Getter @Setter
     private List<Post> posts;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preference_id", referencedColumnName = "preference_id")
+    @Getter @Setter
+    private Preference preference;
 
 }

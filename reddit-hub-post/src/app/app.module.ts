@@ -11,6 +11,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthGuard} from './auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import {TokenInterceptorService} from './services/token-interceptor.service';
+import { FindUserComponent } from './component/find-user/find-user.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {TokenInterceptorService} from './services/token-interceptor.service';
     LoginComponent,
     FollowingsComponent,
     AboutComponent,
-    ProfileComponent
+    ProfileComponent,
+    FindUserComponent
   ],
   imports: [
     BrowserModule,

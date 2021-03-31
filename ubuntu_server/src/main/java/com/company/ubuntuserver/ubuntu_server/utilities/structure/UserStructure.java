@@ -47,4 +47,21 @@ public class UserStructure {
         return  user;
     }
 
+    public HashMap formatFindUser(User user){
+        HashMap<Object, Object> userFound = new HashMap<>();
+        userFound.put("userId",user.getUserName());
+        userFound.put("userName",user.getUserName());
+        userFound.put("userLastName",user.getUserName());
+        userFound.put("followers",user.getUsers());
+        userFound.put("posts",user.getPosts());
+        userFound.put("preferences",user.getPreferences());
+        /*userFound.put("userName",user.getUserName());
+        userFound.put("userName",user.getUserName());
+        userFound.put("userName",user.getUserName());
+        userFound.put("userName",user.getUserName());
+        userFound.put("userName",user.getUserName());*/
+
+        return userFound;
+    }
+
 }

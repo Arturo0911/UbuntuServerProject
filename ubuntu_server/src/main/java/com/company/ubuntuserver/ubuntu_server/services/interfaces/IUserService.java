@@ -33,7 +33,8 @@ public interface IUserService {
 
     User profileFindAll(String email);
 
-    //Boolean userExists(String email);
+    User findUserByUserName(String userName);
+    User findUserByUserLastName(String userLastName);
 
 
 

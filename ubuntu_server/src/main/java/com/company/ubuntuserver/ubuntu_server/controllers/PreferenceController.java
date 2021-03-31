@@ -17,13 +17,13 @@ public class PreferenceController {
     @Autowired
     private IPreferenceService iPreferenceService;
 
-    @PostMapping("/newPreference")
-    public ResponseEntity<JsonResponseBody>createPreference(@RequestBody Preference preference) {
+    @PostMapping("/newPreference/{userId}")
+    public ResponseEntity<JsonResponseBody>createPreference(@PathVariable("userId") Integer userId,@RequestBody Preference preference) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
                             ServerMessages.successMessage,
-                            iPreferenceService.createPreference(preference)));
+                            iPreferenceService.createPreference(userId,preference)));
         }catch (Exception e ){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
@@ -31,13 +31,13 @@ public class PreferenceController {
         }
     }
 
-    @PutMapping("/updatePreference")
-    public ResponseEntity<JsonResponseBody>updatePreferences(@RequestBody Preference preference) {
+    @PutMapping("/updatePreference/{userId}")
+    public ResponseEntity<JsonResponseBody>updatePreferences(@PathVariable("userId")Integer userId, @RequestBody Preference preference) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
                             ServerMessages.successMessage,
-                            iPreferenceService.updatePreference(preference)));
+                            iPreferenceService.updatePreference(userId,preference)));
         }catch (Exception e ){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),

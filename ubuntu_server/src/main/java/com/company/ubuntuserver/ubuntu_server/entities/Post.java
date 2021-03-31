@@ -43,10 +43,6 @@ public class Post {
     @JsonFormat(pattern="dd/MM/yy")
     private Date postModify;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
 
     @PrePersist
     void generateDate(){

@@ -37,10 +37,7 @@ public class Preference {
     private String experience;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @Getter @Setter
-    private User user;
+    
 
 
 }
