@@ -3,24 +3,24 @@ export interface iUserProfile {
     userName: string,
     userLastName: string,
     users: iUserProfile[],
-    posts:iPosts[],
-    email:string,
-    imageUrl:string,
-    phoneNumber:string,
+    posts: iPosts[],
+    email: string,
+    imageUrl: string,
+    phoneNumber: string,
     preferences: iPreferences,
     userBirth: string,
-    userCreatedAt:string,
-    gender:string,
-    password:string,
-    status:string
+    userCreatedAt: string,
+    gender: string,
+    password: string,
+    status: string
 
 }
 
 export interface iPosts {
     postId: number,
     postTitle: string,
-    postContent:string,
-    postDate:string,
+    postContent: string,
+    postDate: string,
     userLikes: iUserProfile[],
     postModify: string | null,
 
@@ -29,7 +29,7 @@ export interface iPosts {
 export interface iPreferences {
     preferencesId: number,
     currentlyStatus: string,
-    codePreferences:string,
+    codePreferences: string,
     ranking: number,
     experience: string
 }
@@ -45,10 +45,10 @@ export interface FoundUser {
     userName: string,
     userLastName: string,
     followers: number,
-    posts:postFoundUser[],
-    email:string,
-    imageUrl:string,
-    phoneNumber:string,
+    posts: postFoundUser[],
+    email: string,
+    imageUrl: string,
+    phoneNumber: string,
     preferences: iPreferences,
     userBirth: string,
 }
@@ -58,4 +58,21 @@ interface postFoundUser {
     Title: string,
     Likes: number,
     CratedAt: string
+}
+
+
+export interface allUsers {
+    imagUrl:string,
+    followers: number,
+    userLastName: string,
+    userName: string,
+    userId: number
+}
+
+
+// interface to make post
+
+export interface makePost {
+    postTitle:string,
+    postContent: string
 }

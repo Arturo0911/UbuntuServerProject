@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(){
-    console.log(this.userLogin);
+    //console.log(this.userLogin);
     
     this.authService.signIn(this.userLogin)
       .subscribe(res =>{
-        console.log(res.response.jwt)
+        //console.log(res.response.jwt)
         localStorage.setItem("token", res.response.jwt)
         localStorage.setItem("email", res.response.email)
         this.router.navigate(['profile'])

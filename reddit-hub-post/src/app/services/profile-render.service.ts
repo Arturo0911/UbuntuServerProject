@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {iUserProfile} from '../models/IUserProfile';
+import {allUsers, iUserProfile} from '../models/IUserProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class ProfileRenderService {
   private BASE_URL = "http://127.0.0.1:8080";
   
   userProfile:iUserProfile [] | any;
+  findAllUsers:allUsers[] | any;
+
   constructor(private http:HttpClient) { }
 
 

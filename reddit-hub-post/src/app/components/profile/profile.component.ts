@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ProfileRenderService} from '../../services/profile-render.service';
+import { ProfileRenderService } from '../../services/profile-render.service';
+import { FindUserService } from '../../services/find-user.service';
+import { findUser, makePost } from 'src/app/models/IUserProfile';
+import {Router} from '@angular/router';
+
+
 
 /**
  * @author Arturo Negreiros 
@@ -12,35 +17,65 @@ import {ProfileRenderService} from '../../services/profile-render.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public profile:ProfileRenderService) { }
+  constructor(public profile: ProfileRenderService,
+    public userToFind:FindUserService, private router:Router) { }
 
-     
-
+  findUserForm: findUser | any = {};
+  makeAPost:makePost | any = {};
 
   ngOnInit(): void {
-    this.getUserProfile();    
+    this.getUserProfile();
   }
 
-  getUserProfile(){
+  getUserProfile():void {
     this.profile.renderProfile()
-    .subscribe(
-      res => {
-        this.profile.userProfile = [res.response]
+      .subscribe(
+        res => {
+          this.profile.userProfile = [res.response]
         },
+        err => {
+          console.log(err);
 
-      err => {
+        }
+      );
+  }
+
+  onPostButton() {
+
+  }
+
+  onFindUserButton():void {
+    this.userToFind.findUser(this.findUserForm)
+      .subscribe(res => {
+        console.log(res.response);
+        
+        this.userToFind.userFound = [res.response];
+      }, err => {
         console.log(err);
         
-      }
-    );
+      })
   }
 
-  onPostButton(){
-
+  findAllUsers():void{
+    this.userToFind.findAllUsers()
+    .subscribe(res => {
+      console.log(res.response);
+      
+      this.profile.findAllUsers = res.response;
+    }, err => {
+      console.log(err);
+      
+    })
   }
 
-  onFindUserButton(){
-    
+  checkUserFound() :Boolean{
+    if (this.userToFind.userFound.userId  != null){
+        return true;
+    }else{
+        return false;
+    }
   }
+
+  
 
 }

@@ -6,3 +6,11 @@
     margin-left: 10px;
     border-radius: 1px solid;
 }
+
+#form_modal_container {
+    padding-left: 40px;
+}
+
+#form_modal_container h5 {
+    padding-bottom: 25px;
+}

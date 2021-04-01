@@ -32,7 +32,7 @@ public class JWTFilterRequest extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
-        log.info("Authorization: "+authorizationHeader);
+        //log.info("Authorization: "+authorizationHeader);
         if (authorizationHeader != null &&  authorizationHeader.startsWith("Bearer ")){
             //String jwt = authorizationHeader.split(" ")[1];
             String jwt = authorizationHeader.split(" ")[1];

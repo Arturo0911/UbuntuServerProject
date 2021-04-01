@@ -17,6 +17,11 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
+
+                        <!-- <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="find by name" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form> -->
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
                         </li>

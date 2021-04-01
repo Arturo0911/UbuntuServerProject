@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {findUser} from '../../models/IUserProfile';
+import { findUser } from 'src/app/models/IUserProfile';
 import {FindUserService} from '../../services/find-user.service';
 
 
@@ -11,21 +11,32 @@ import {FindUserService} from '../../services/find-user.service';
 })
 export class FindUserComponent implements OnInit {
 
-  findUserForm:findUser | any = {}
+  findUserForm: findUser | any = {}
+  
 
-  userFound 
-  constructor(private findUserService:FindUserService) { }
+  constructor(public userToFind:FindUserService) { }
 
   ngOnInit(): void {
+    this.onFindUserButton();
   }
 
-  findUser(){
-    this.findUserService.findUser(this.findUserForm)
-      .subscribe(res =>{
-          
-      }, err =>{
-
+  onFindUserButton() {
+    this.userToFind.findUser(this.findUserForm)
+      .subscribe(res => {
+        this.userToFind.userFound = [res.response];
+      }, err => {
+        console.log(err);
+        
       })
+  }
+
+
+  checkUserFound() :Boolean{
+    if (this.userToFind.userFound.userId  != null){
+        return true;
+    }else{
+        return false;
+    }
   }
 
 }

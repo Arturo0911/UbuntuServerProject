@@ -31,10 +31,6 @@ public class IUserServiceImplementation implements IUserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-
-    @Autowired
-    PostStructure postStructure;
-
     @Override
     public User newUser(User user) throws EmailExistsException {
         if(userExists(user.getEmail())){
