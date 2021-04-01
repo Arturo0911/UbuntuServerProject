@@ -46,11 +46,8 @@ export interface FoundUser {
     userLastName: string,
     followers: number,
     posts: postFoundUser[],
-    email: string,
     imageUrl: string,
-    phoneNumber: string,
-    preferences: iPreferences,
-    userBirth: string,
+    preferences: iPreferences
 }
 
 interface postFoundUser {

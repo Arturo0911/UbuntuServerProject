@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { findUser } from 'src/app/models/IUserProfile';
 import {FindUserService} from '../../services/find-user.service';
-import {ProfileComponent} from '../profile/profile.component';
+//import {ProfileComponent} from '../profile/profile.component';
 
 
 @Component({
@@ -13,18 +13,16 @@ export class FindUserComponent implements OnInit {
 
   findUserForm: findUser | any = {};
 
-  constructor(public userToFind:FindUserService,
-    public profile:ProfileComponent) { }
+  constructor(public userToFind:FindUserService) { }
 
   ngOnInit(): void {
-    console.log(this.userToFind.userFound);
+    //console.log(this.userToFind.userFound);
     
   }
 
   onFindUserButton(): void {
     this.userToFind.findUser(this.findUserForm)
       .subscribe(res => {
-
         this.userToFind.userFound = [res.response];
         console.log(this.userToFind.userFound);
         
@@ -34,12 +32,16 @@ export class FindUserComponent implements OnInit {
       })
   }
 
-  checkUserFound() :Boolean{
-    if (this.userToFind.userFound.userId  != null){
+  checkUserFound(): boolean{
+    if (this.userToFind.userFound  != null){
         return true;
     }else{
         return false;
     }
+  }
+
+  follow(){
+
   }
 
 }

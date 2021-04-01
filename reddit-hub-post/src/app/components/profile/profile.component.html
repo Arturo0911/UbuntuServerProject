@@ -18,7 +18,7 @@
                     <div class="card-footer">Followers: <strong>{{profile.users.length}}</strong></div>
                 </div>
                 <button id="post_button" class="btn btn-info"> Make a post</button>
-                <button id="find_button" class="btn btn-primary"> Find users</button>
+                <a id="find_button" (click)="goToFindUserPage()" class="btn btn-primary"> Find users</a>
             </div>
         </div>
     </div>

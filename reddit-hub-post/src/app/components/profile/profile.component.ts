@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
 
   
 
-  findAllUsers(): void {
+  /*findAllUsers(): void {
     this.userToFind.findAllUsers()
       .subscribe(res => {
         console.log(res.response);
@@ -58,14 +58,18 @@ export class ProfileComponent implements OnInit {
         console.log(err);
 
       })
-  }
+  }*/
 
-  checkUserFound(): Boolean {
+  /*checkUserFound(): Boolean {
     if (this.userToFind.userFound.userId != null) {
       return true;
     } else {
       return false;
     }
+  }*/
+
+  goToFindUserPage(){
+    this.router.navigate(['/found']);
   }
 
 

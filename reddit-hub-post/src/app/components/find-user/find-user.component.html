@@ -9,7 +9,7 @@
                     <input autofocus class="form-control" type="text" [(ngModel)]="findUserForm.userLastName" name="userLastName" placeholder="user last name">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">
+                    <button type="submit" class="btn btn-success btn-block">
                         Search  
                     </button>
                 </div>
@@ -25,19 +25,17 @@
                 </div>
                 <div class="card-body">
                     <img src={{user.imageUrl}} class="card-img-top" alt="...">
-                    <h5>Ranking of coders: {{user.preferences.ranking}}</h5>
+                    <!--<h5>Ranking of coders: {{user.preferences.ranking}}</h5>-->
                     <div class="card border-success mb-3" style="max-width: 18rem;">
                         <div class="card-header">About me.</div>
                         <div class="card-body">
                             <h5 class="card-title">Information</h5>
                             <p class="card-text">Hi, i'm {{user.userName}}. I'm a coder specialist in
-                                <strong><em>{{user.preferences.codePreferences}}</em></strong>
                             </p>
                         </div>
                         <div class="card-footer">Followers: <strong>{{user.followers}}</strong></div>
                     </div>
-                    <button id="post_button" class="btn btn-info"> Follow</button>
-                    <button id="find_button" class="btn btn-primary"> Find users</button>
+                    <button id="post_button" (click)="follow()" class="btn btn-info"> Follow</button>
                 </div>
             </div>
         </div>
