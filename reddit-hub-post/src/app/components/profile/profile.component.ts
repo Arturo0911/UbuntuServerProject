@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileRenderService } from '../../services/profile-render.service';
 import { FindUserService } from '../../services/find-user.service';
-import { findUser, makePost } from 'src/app/models/IUserProfile';
+import { findUser, iFormPreferences, makePost } from 'src/app/models/IUserProfile';
 import { Router } from '@angular/router';
 import { PostServiceService } from '../../services/post-service.service';
 
@@ -24,6 +24,9 @@ export class ProfileComponent implements OnInit {
 
   findUserForm: findUser | any = {};
   makeAPost: makePost | any = {};
+
+  preferencesForm: iFormPreferences | any = {};
+
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -63,6 +66,11 @@ export class ProfileComponent implements OnInit {
   
   goToFindUserPage(){
     this.router.navigate(['/found']);
+  }
+
+
+  registerPreferences(){
+
   }
 
 

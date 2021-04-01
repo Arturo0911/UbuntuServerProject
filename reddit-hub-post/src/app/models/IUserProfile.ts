@@ -26,6 +26,8 @@ export interface iPosts {
 
 }
 
+
+// to be shipped
 export interface iPreferences {
     preferencesId: number,
     currentlyStatus: string,
@@ -34,6 +36,12 @@ export interface iPreferences {
     experience: string
 }
 
+export interface iFormPreferences {
+    currentlyStatus: string,
+    codePreferences: string,
+    ranking: number,
+    experience: string
+}
 
 export interface findUser {
     userName: string,
