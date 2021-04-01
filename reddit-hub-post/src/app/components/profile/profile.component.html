@@ -22,54 +22,59 @@
             </div>
         </div>
     </div>
+    <div class="col-md-8">
+        <ng-container *ngIf="checkPreferences(); else IsPreference">
+            <h1 id="preferences_title" class="display-5"> Fill the fields to complete the register</h1>
+            <form (submit)="registerPreferences()">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputApartment">Currently status</label>
+                        <select [(ngModel)]="preferencesForm.currentlyStatus" class="form-control" id="currentlyStatus" name="currentlyStatus">
+                            <option selected>Employee</option>
+                            <option>Professional</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputBirth">Ranking establecido</label>
+                        <input readonly required type="number" [(ngModel)]="preferencesForm.ranking" value="5" class="form-control" id="ranking" name="ranking" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputApellido">Apellidos</label>
+                        <textarea required [(ngModel)]="preferencesForm.codePreferences" class="form-control" maxlength="200" id="codePreferences" name="codePreferences"></textarea>
+                    </div>
 
-    <ng-container *ngIf="checkPreferences(); else IsPreference">
-        <form (submit)="registerPreferences()">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputNombre">Nombres</label>
-                    <input required type="text" [(ngModel)]="preferencesForm.currentlyStatus" class="form-control" id="currentlyStatus" name="currentlyStatus" />
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputTelefono">Telefono</label>
+                        <textarea required [(ngModel)]="preferencesForm.experience" maxlength="2000" class="form-control" id="experience" name="experience"></textarea>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputApellido">Apellidos</label>
-                    <textarea required [(ngModel)]="preferencesForm.codePreferences" class="form-control" maxlength="200" id="codePreferences" name="codePreferences"></textarea>
-                </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputBirth">Date birth</label>
-                    <input required type="number" [(ngModel)]="preferencesForm.ranking" min="0" max="5" class="form-control" id="ranking" name="ranking" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputTelefono">Telefono</label>
-                    <textarea required [(ngModel)]="preferencesForm.experience" maxlength="2000" class="form-control" id="experience" name="experience"></textarea>
-                </div>
-            </div>
-            <!-- <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputApartment">Gender</label>
-                    <select [(ngModel)]="user.gender" class="form-control" name="gender">
-                        <option selected>Male</option>
-                        <option>Female</option>
-                        <option>Non binary</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputEmail4">Email</label>
-                    <input required type="text" [(ngModel)]="user.email" class="form-control" id="inputEmail4" name="email" name="email" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputPass">Password</label>
-                    <input required type="password" [(ngModel)]="user.password" class="form-control" id="inputPass" name="password" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label htmlFor="inputRepeatPass">Repeat password</label>
-                    <input required type="password" class="form-control" id="inputRepeatPass" name="repeatPassword" />
-                </div>
-            </div> -->
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
-    </ng-container>
-    <ng-template #IsPreference>
-        <div class="col-md-8">
+                <!-- <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputApartment">Gender</label>
+                        <select [(ngModel)]="user.gender" class="form-control" name="gender">
+                            <option selected>Male</option>
+                            <option>Female</option>
+                            <option>Non binary</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputEmail4">Email</label>
+                        <input required type="text" [(ngModel)]="user.email" class="form-control" id="inputEmail4" name="email" name="email" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputPass">Password</label>
+                        <input required type="password" [(ngModel)]="user.password" class="form-control" id="inputPass" name="password" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label htmlFor="inputRepeatPass">Repeat password</label>
+                        <input required type="password" class="form-control" id="inputRepeatPass" name="repeatPassword" />
+                    </div>
+                </div> -->
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </form>
+        </ng-container>
+        <ng-template #IsPreference>
             <div class="jumbotron" *ngFor="let profile of profile.userProfile">
                 <h1 class="display-4">Experience!</h1>
                 <p class="lead">{{profile.preference.experience}}</p>
@@ -79,7 +84,8 @@
                 </p>
                 <div class="card-footer">Status: <strong>{{profile.preference.currentlyStatus}}</strong></div>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
+    </div>
+
 
 </div>

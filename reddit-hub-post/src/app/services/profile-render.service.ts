@@ -8,7 +8,8 @@ import {allUsers, iUserProfile} from '../models/IUserProfile';
 export class ProfileRenderService {
 
   private BASE_URL = "http://127.0.0.1:8080";
-  
+
+  private BASE_URL_PREFERENCES = "http://127.0.0.1:8080/preference/newPreference";
   userProfile:iUserProfile [] | any;
   findAllUsers:allUsers[] | any;
 
@@ -17,6 +18,10 @@ export class ProfileRenderService {
 
   renderProfile(){
     return this.http.get<any>(this.BASE_URL+`/user/profile/${localStorage.getItem("email")}`);
+  }
+
+  createNewPreference(preference:any){
+    return this.http.post<any>(this.BASE_URL_PREFERENCES+`/${localStorage.getItem("userId")}`, preference);
   }
 
 

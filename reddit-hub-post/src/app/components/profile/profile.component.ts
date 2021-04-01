@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res => {
           this.profile.userProfile = [res.response]
-          
+          localStorage.setItem("userId",res.response.userId);
           
         },
         err => {
@@ -70,7 +70,16 @@ export class ProfileComponent implements OnInit {
 
 
   registerPreferences(){
-
+    this.profile.createNewPreference(this.preferencesForm)
+      .subscribe(
+        res =>{
+          this.router.navigate(['/profile']);
+        },
+        err =>{
+          console.log(err);
+          
+        }
+      )
   }
 
 
