@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
+    //this.checkPreferences();
   }
 
   getUserProfile(): void {
@@ -34,6 +35,8 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res => {
           this.profile.userProfile = [res.response]
+          
+          
         },
         err => {
           console.log(err);
@@ -47,10 +50,13 @@ export class ProfileComponent implements OnInit {
   }
 
   checkPreferences():boolean{
-    if(this.profile.userProfile.preferences != null){
+    console.log(this.profile.userProfile);
+    if(this.profile.userProfile[0].preference == null){
+      
         return true;
     }else{
         return false;
+        
     }
   }
 

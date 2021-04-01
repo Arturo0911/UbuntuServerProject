@@ -7,7 +7,7 @@ export interface iUserProfile {
     email: string,
     imageUrl: string,
     phoneNumber: string,
-    preferences: iPreferences,
+    preference: iPreferences,
     userBirth: string,
     userCreatedAt: string,
     gender: string,

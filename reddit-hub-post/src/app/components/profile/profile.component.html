@@ -22,15 +22,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="jumbotron" *ngFor="let profile of profile.userProfile">
-            <h1 class="display-4">Experience!</h1>
-            <p class="lead">{{profile.preference.experience}}</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" role="button">Update preferences</a>
-            </p>
-            <div class="card-footer">Status: <strong>{{profile.preference.currentlyStatus}}</strong></div>
+
+    <ng-container *ngIf="checkPreferences(); else IsPreference">
+        <h5>hola</h5>
+    </ng-container>
+    <ng-template #IsPreference>
+        <div class="col-md-8">
+            <div class="jumbotron" *ngFor="let profile of profile.userProfile">
+                <h1 class="display-4">Experience!</h1>
+                <p class="lead">{{profile.preference.experience}}</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" role="button">Update preferences</a>
+                </p>
+                <div class="card-footer">Status: <strong>{{profile.preference.currentlyStatus}}</strong></div>
+            </div>
         </div>
-    </div>
+    </ng-template>
+
 </div>
