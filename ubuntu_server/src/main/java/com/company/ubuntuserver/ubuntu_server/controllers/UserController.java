@@ -84,12 +84,9 @@ public class UserController {
     @PostMapping(value = "/newUser", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JsonResponseBody> newUser( @RequestBody User user){
         try {
-            //log.info((Supplier<String>) user);
-
-            userService.newUser(user);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            ServerMessages.successMessage, user));
+                            ServerMessages.successMessage, userService.newUser(user)));
         }catch (Exception e){
             e.printStackTrace();
             System.out.println(e.toString());

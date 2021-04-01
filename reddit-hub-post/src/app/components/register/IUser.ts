@@ -3,6 +3,7 @@ export interface iUserSignup {
     userLastName: string,
     userBirth: Date,
     gender: string,
+    imageUrl:string,
     phoneNumber: string,
     status: string,
     email: string,

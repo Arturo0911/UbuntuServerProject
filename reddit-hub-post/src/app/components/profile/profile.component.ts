@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileRenderService } from '../../services/profile-render.service';
 import { FindUserService } from '../../services/find-user.service';
-import { findUser, iFormPreferences, makePost } from 'src/app/models/IUserProfile';
+import { findUser, makePost } from 'src/app/models/IUserProfile';
 import { Router } from '@angular/router';
 import { PostServiceService } from '../../services/post-service.service';
 
@@ -17,22 +17,18 @@ import { PostServiceService } from '../../services/post-service.service';
 })
 export class ProfileComponent implements OnInit {
 
+
+  findUserForm: findUser|any = {};
+  makeAPost: makePost|any = {};
+  
+
   constructor(public profile: ProfileRenderService,
     public userToFind: FindUserService,
     private router: Router,
     public postService: PostServiceService) { }
 
-
-    
-  findUserForm: findUser | any = {};
-  makeAPost: makePost | any = {};
-
-  preferencesForm: iFormPreferences | any = {};
-
-
   ngOnInit(): void {
     this.getUserProfile();
-    //this.checkPreferences();
   }
 
   getUserProfile(): void {
@@ -52,40 +48,9 @@ export class ProfileComponent implements OnInit {
 
   onPostButton() {
 
-  }
-
-  checkPreferences():boolean{
-    //console.log(this.profile.userProfile);
-    if(this.profile.userProfile[0].preference == null){
-      
-        return true;
-    }else{
-        return false;
-        
-    }
-  }
-
-  
+  }  
   goToFindUserPage(){
     this.router.navigate(['/found']);
   }
-
-
-  registerPreferences(){
-    console.log(this.preferencesForm);
-    
-    /*this.profile.createNewPreference(this.preferencesForm)
-      .subscribe(
-        res =>{
-          this.router.navigate(['/profile']);
-        },
-        err =>{
-          console.log(err);
-          
-        }
-      )*/
-  }
-
-
 
 }

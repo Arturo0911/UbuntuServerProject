@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {TokenInterceptorService} from './services/token-interceptor.service';
 import { FindUserComponent } from './components/find-user/find-user.component';
 import { HomeComponent } from './components/home/home.component';
+import { PostRegisterComponent } from './components/post-register/post-register.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HomeComponent } from './components/home/home.component';
     AboutComponent,
     ProfileComponent,
     FindUserComponent,
-    HomeComponent
+    HomeComponent,
+    PostRegisterComponent
   ],
   imports: [
     BrowserModule,

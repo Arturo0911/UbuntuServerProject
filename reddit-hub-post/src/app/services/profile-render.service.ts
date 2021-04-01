@@ -20,8 +20,8 @@ export class ProfileRenderService {
     return this.http.get<any>(this.BASE_URL+`/user/profile/${localStorage.getItem("email")}`);
   }
 
-  createNewPreference(preference:any){
-    return this.http.post<any>(this.BASE_URL_PREFERENCES+`/${localStorage.getItem("userId")}`, preference);
+  createNewPreference(preference:any, userId:number){
+    return this.http.post<any>(this.BASE_URL_PREFERENCES+`/${userId}`, preference);
   }
 
 

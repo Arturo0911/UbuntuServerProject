@@ -26,6 +26,10 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label htmlFor="inputImageUrl">Put here the link of your image</label>
+                            <input required type="text" [(ngModel)]="user.imageUrl" class="form-control" id="inputImageUrl" name="imageUrl" />
+                        </div>
+                        <div class="form-group col-md-6">
                             <label htmlFor="inputApartment">Gender</label>
                             <select [(ngModel)]="user.gender" class="form-control" name="gender">
                                 <option selected>Male</option>
@@ -40,10 +44,6 @@
                         <div class="form-group col-md-6">
                             <label htmlFor="inputPass">Password</label>
                             <input required type="password" [(ngModel)]="user.password" class="form-control" id="inputPass" name="password" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label htmlFor="inputRepeatPass">Repeat password</label>
-                            <input required type="password" class="form-control" id="inputRepeatPass" name="repeatPassword" />
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Save</button>
