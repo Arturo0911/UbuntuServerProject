@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileRenderService } from '../../services/profile-render.service';
 import { FindUserService } from '../../services/find-user.service';
 import { findUser, makePost } from 'src/app/models/IUserProfile';
-import {Router} from '@angular/router';
-
+import { Router } from '@angular/router';
+import { PostServiceService } from '../../services/post-service.service';
 
 
 /**
@@ -18,16 +18,18 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   constructor(public profile: ProfileRenderService,
-    public userToFind:FindUserService, private router:Router) { }
+    public userToFind: FindUserService,
+    private router: Router,
+    public postService: PostServiceService) { }
 
   findUserForm: findUser | any = {};
-  makeAPost:makePost | any = {};
+  makeAPost: makePost | any = {};
 
   ngOnInit(): void {
     this.getUserProfile();
   }
 
-  getUserProfile():void {
+  getUserProfile(): void {
     this.profile.renderProfile()
       .subscribe(
         res => {
@@ -44,38 +46,28 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  onFindUserButton():void {
-    this.userToFind.findUser(this.findUserForm)
+  
+
+  findAllUsers(): void {
+    this.userToFind.findAllUsers()
       .subscribe(res => {
         console.log(res.response);
-        
-        this.userToFind.userFound = [res.response];
+
+        this.profile.findAllUsers = res.response;
       }, err => {
         console.log(err);
-        
+
       })
   }
 
-  findAllUsers():void{
-    this.userToFind.findAllUsers()
-    .subscribe(res => {
-      console.log(res.response);
-      
-      this.profile.findAllUsers = res.response;
-    }, err => {
-      console.log(err);
-      
-    })
-  }
-
-  checkUserFound() :Boolean{
-    if (this.userToFind.userFound.userId  != null){
-        return true;
-    }else{
-        return false;
+  checkUserFound(): Boolean {
+    if (this.userToFind.userFound.userId != null) {
+      return true;
+    } else {
+      return false;
     }
   }
 
-  
+
 
 }

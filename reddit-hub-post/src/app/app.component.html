@@ -8,20 +8,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
-
-                        <!-- <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="find by name" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form> -->
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
                         </li>
@@ -29,7 +20,6 @@
                             <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
                         </li>
                     </ng-container>
-
                     <ng-template #loggedIn>
                         <li class="nav-item">
                             <a class="nav-link" (click)="authService.logOut()">Log out</a>

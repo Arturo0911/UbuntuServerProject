@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card" *ngFor="let profile of profile.userProfile" style="width: 18rem;">
-
             <div class="card-header">
                 <h5 class="card-title">{{profile.userName}}</h5>
             </div>
@@ -24,14 +23,6 @@
         </div>
     </div>
     <div class="col-md-8">
-        <!--<div class="card mb-3">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>-->
         <div class="jumbotron" *ngFor="let profile of profile.userProfile">
             <h1 class="display-4">Experience!</h1>
             <p class="lead">{{profile.preference.experience}}</p>
@@ -41,87 +32,5 @@
             </p>
             <div class="card-footer">Status: <strong>{{profile.preference.currentlyStatus}}</strong></div>
         </div>
-
-
-        <!--Modal component-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Find a user
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div id="form_modal_container" class="row">
-                            <h5 class="modal-title" id="exampleModalLabel">Find a user</h5>
-                            <div class="container">
-                                <form (submit)="onFindUserButton()">
-                                    <div class="form-group">
-                                        <input autofocus class="form-control" type="text" [(ngModel)]="findUserForm.userName" name="userName" placeholder="user name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input autofocus class="form-control" type="text" [(ngModel)]="findUserForm.userLastName" name="userLastName" placeholder="user last name">
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success btn-block">
-                                            Search  
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning" (click)="findAllUsers()">Find all</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End moddal component-->
-
-
-        <!--Modal to make a post-->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div id="form_modal_container" class="row">
-                            <h5 class="modal-title" id="exampleModalLabel">What are you thinking ?</h5>
-                            <div class="container">
-                                <form (submit)="onFindUserButton()">
-                                    <div class="form-group">
-                                        <input autofocus class="form-control" type="text" [(ngModel)]="findUserForm.userName" name="postTitle" placeholder="user name">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea autofocus class="form-control" type="text" [(ngModel)]="findUserForm.userLastName" name="postContent" placeholder="user last name"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success btn-block">
-                                            Search  
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning" (click)="onPostButton()">Make post</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End moddal component-->
-
     </div>
 </div>

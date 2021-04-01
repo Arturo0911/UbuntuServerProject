@@ -12,6 +12,7 @@ import {AuthGuard} from './auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import {TokenInterceptorService} from './services/token-interceptor.service';
 import { FindUserComponent } from './components/find-user/find-user.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FindUserComponent } from './components/find-user/find-user.component';
     FollowingsComponent,
     AboutComponent,
     ProfileComponent,
-    FindUserComponent
+    FindUserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -37,7 +37,7 @@ public class UserStructure {
         userManagement.put("userId", user.getUserId());
         userManagement.put("userName", user.getUserName());
         userManagement.put("userLastName", user.getUserLastName());
-        userManagement.put("imagUrl", user.getImageUrl());
+        userManagement.put("imaegUrl", user.getImageUrl());
         userManagement.put("followers", user.getUsers().size());
         return userManagement;
     }
@@ -61,7 +61,7 @@ public class UserStructure {
         userFound.put("userId",user.getUserId());
         userFound.put("userName",user.getUserName());
         userFound.put("userLastName",user.getUserLastName());
-        userFound.put("imagUrl", user.getImageUrl());
+        userFound.put("imageUrl", user.getImageUrl());
         userFound.put("followers",user.getUsers().size()); // i don't want to the whole descriptions of of followers, only the number of this
         userFound.put("posts",postStructure.formatPostStructures(user.getPosts()));
         userFound.put("preferences",user.getPreference());
