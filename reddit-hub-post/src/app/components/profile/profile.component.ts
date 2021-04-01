@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     public postService: PostServiceService) { }
 
+
+    
   findUserForm: findUser | any = {};
   makeAPost: makePost | any = {};
 
@@ -53,7 +55,7 @@ export class ProfileComponent implements OnInit {
   }
 
   checkPreferences():boolean{
-    console.log(this.profile.userProfile);
+    //console.log(this.profile.userProfile);
     if(this.profile.userProfile[0].preference == null){
       
         return true;
@@ -70,7 +72,9 @@ export class ProfileComponent implements OnInit {
 
 
   registerPreferences(){
-    this.profile.createNewPreference(this.preferencesForm)
+    console.log(this.preferencesForm);
+    
+    /*this.profile.createNewPreference(this.preferencesForm)
       .subscribe(
         res =>{
           this.router.navigate(['/profile']);
@@ -79,7 +83,7 @@ export class ProfileComponent implements OnInit {
           console.log(err);
           
         }
-      )
+      )*/
   }
 
 
