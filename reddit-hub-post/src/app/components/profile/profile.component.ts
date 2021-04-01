@@ -46,28 +46,15 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  
-
-  /*findAllUsers(): void {
-    this.userToFind.findAllUsers()
-      .subscribe(res => {
-        console.log(res.response);
-
-        this.profile.findAllUsers = res.response;
-      }, err => {
-        console.log(err);
-
-      })
-  }*/
-
-  /*checkUserFound(): Boolean {
-    if (this.userToFind.userFound.userId != null) {
-      return true;
-    } else {
-      return false;
+  checkPreferences():boolean{
+    if(this.profile.userProfile.preferences != null){
+        return true;
+    }else{
+        return false;
     }
-  }*/
+  }
 
+  
   goToFindUserPage(){
     this.router.navigate(['/found']);
   }
