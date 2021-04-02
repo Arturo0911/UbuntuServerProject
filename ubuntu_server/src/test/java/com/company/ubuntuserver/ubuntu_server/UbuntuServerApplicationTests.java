@@ -21,18 +21,6 @@ class UbuntuServerApplicationTests {
 
 	@Test
 	public void testUser() {
-		User user = new User();
-		user.setUserName("James Alan");
-		user.setUserLastName("Hetfield");
-		user.setEmail("james@metallica.com");
-		user.setPassword(passwordEncoder.encode("Metallica rules"));
-		user.setUserBirth(new Date("09/11/1969"));
-		user.setPhoneNumber("0990893426");
-		user.setGender("Male");
-		user.setStatus("Active");
-		User returnUser = iUser.save(user);
-
-		assert (returnUser.getPassword().equalsIgnoreCase(user.getPassword()));
 	}
 
 }

@@ -1,4 +1,4 @@
 FROM openjdk:11
-ADD target/RedditHub.jar RedditHub.jar
+COPY "./target/RedditHubContainer.jar" "app.jar"
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "RedditHub.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
