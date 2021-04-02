@@ -1,0 +1,27 @@
+version: "1.0"
+services:
+  reddit-hub:
+    image: reddit-hub
+    ports:
+    - "8080:8080"
+    networks:
+
+
+
+
+
+
+  database:
+    container_name: reddithub-database
+    image: mysql:8.0.23
+    restart: always
+    hostname: database
+    networks:
+      - fluxit
+    environment:
+      MYSQL_DATABASE: UbuntuServerProject
+      MYSQL_USER: root
+    ports:
+    - "3307:3306"
+    expose:
+      - "3307"
