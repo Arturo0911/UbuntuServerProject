@@ -116,18 +116,30 @@ public class IUserServiceImplementation implements IUserService {
     }
 
     @Override
-    public void followUser(Integer userFollower, Integer userToFollow) {
-        Optional<User> userFollow = iUser.findById(userFollower);
-        Optional<User> newUser = iUser.findById(userToFollow);
-        userFollow.get().getUsers().add(newUser.get());
-        iUser.save(userFollow.get());
+    public Object followUser(Integer userFollower, Integer userToFollow) {
+        try {
+            Optional<User> userFollow = iUser.findById(userFollower);
+            Optional<User> newUser = iUser.findById(userToFollow);
+
+            if (userFollow.get().getUsers().contains(newUser.get())){
+                userFollow.get().getUsers().remove(newUser.get());
+                return "Not follow";
+            }else{
+                userFollow.get().getUsers().add(newUser.get());
+                iUser.save(userFollow.get());
+                return "Follow";
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+            return e.toString();
+        }
     }
 
 
 
     @Override
-    public User profileFindAll(String email) {
-        return userStructure.formatProfile(iUser.findUserByEmail(email));
+    public Object profileFindAll(String email) {
+        return userStructure.formatFindUser(iUser.findUserByEmail(email));
     }
 
 

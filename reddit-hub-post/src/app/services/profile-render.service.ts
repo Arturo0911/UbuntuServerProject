@@ -25,6 +25,11 @@ export class ProfileRenderService {
   }
 
 
+  makePost(postForm:any, userId:number){
+    return this.http.post<any>(this.BASE_URL+`/post/newPost/${userId}`, postForm)
+  }
+
+
 
 
 

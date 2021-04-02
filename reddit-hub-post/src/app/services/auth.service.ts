@@ -33,7 +33,8 @@ export class AuthService {
   logOut(){
     this.router.navigate(["/login"]);
     localStorage.setItem("token", "");
-    localStorage.setItem("email", "");
+    localStorage.removeItem("email");
+    localStorage.removeItem("userId");
     
   }
 

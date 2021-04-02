@@ -18,7 +18,7 @@ public interface IUserService {
 
     List<User> findAllFollowings(Integer userId);
     void deleteFollowing(Integer userId, Integer user);
-    void followUser(Integer userFollower, Integer userToFollow);
+    Object followUser(Integer userFollower, Integer userToFollow);
 
     void saveMultipleUsers(List<User>users);
 
@@ -31,7 +31,7 @@ public interface IUserService {
     User findByEmail(String email);*/
 
 
-    User profileFindAll(String email);
+    Object profileFindAll(String email);
 
     Object findUserByUserName(String userName);
     Object findUserByUserLastName(String userLastName);

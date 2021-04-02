@@ -56,10 +56,10 @@ public class UserController {
     public ResponseEntity<JsonResponseBody> follow(@Valid @PathVariable("userFollower") Integer userFollower,
                                             @Valid @PathVariable("userToFollow") Integer userToFollow){
         try {
-            userService.followUser(userFollower, userToFollow);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            ServerMessages.successMessage,"ok"));
+                            ServerMessages.successMessage,
+                            userService.followUser(userFollower,userToFollow)));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),
@@ -186,10 +186,6 @@ public class UserController {
                         .body(new JsonResponseBody(HttpStatus.OK.value(),
                                 ServerMessages.successMessage, "Task not found"));
             }
-            /*return ResponseEntity.status(HttpStatus.OK)
-                    .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            ServerMessages.successMessage,
-                            userService.findUserByUserName(user.getUserName())));*/
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(),

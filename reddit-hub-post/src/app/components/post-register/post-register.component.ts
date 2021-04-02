@@ -15,19 +15,15 @@ export class PostRegisterComponent implements OnInit {
 
   preferencesForm: iFormPreferences|any = {};
 
-
-
   ngOnInit(): void {
   }
-
-
 
   registerPreferences():void{
     this.profile.createNewPreference(this.preferencesForm,Number(localStorage.getItem("userId")))
       .subscribe(
         res => {
-          console.log(localStorage.getItem("userId"));
-          console.log(res);
+          localStorage.removeItem("userId");
+          this.router.navigate(['/login']);
         }, err =>{
           console.log(err);
           

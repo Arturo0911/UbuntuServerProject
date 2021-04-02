@@ -12,6 +12,8 @@ import {FindUserService} from '../../services/find-user.service';
 export class FindUserComponent implements OnInit {
 
   findUserForm: findUser | any = {};
+  objectEmpty:any = {}
+  userIdToFollow:number = 0; // contains the userId to be followed
 
   constructor(public userToFind:FindUserService) { }
 
@@ -24,7 +26,8 @@ export class FindUserComponent implements OnInit {
     this.userToFind.findUser(this.findUserForm)
       .subscribe(res => {
         this.userToFind.userFound = [res.response];
-        console.log(this.userToFind.userFound);
+        this.userIdToFollow = res.response.userId;
+        //console.log(this.userToFind.userFound);
         
       }, err => {
         console.log(err);
@@ -41,7 +44,15 @@ export class FindUserComponent implements OnInit {
   }
 
   follow(){
-
+    this.userToFind.followUser(Number(localStorage.getItem("userId")),this.userIdToFollow, this.objectEmpty )
+      .subscribe(
+        res=>{
+          console.log(res);
+        }, err => {
+          console.log(err);
+          
+        }
+      )
   }
 
 }

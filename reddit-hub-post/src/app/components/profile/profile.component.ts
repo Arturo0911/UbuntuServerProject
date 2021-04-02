@@ -4,6 +4,7 @@ import { FindUserService } from '../../services/find-user.service';
 import { findUser, makePost } from 'src/app/models/IUserProfile';
 import { Router } from '@angular/router';
 import { PostServiceService } from '../../services/post-service.service';
+import { NgForm } from '@angular/forms';
 
 
 /**
@@ -46,8 +47,21 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  onPostButton() {
+  onPostButton(form:NgForm) {
+    //this.router.navigate(['/profile']);
+    console.log(form.value);
+    
+    this.profile.makePost(this.makeAPost, Number(localStorage.getItem("userId")))
+      .subscribe(
+        res=>  {
+          this.getUserProfile();
+          this.router.navigate(['profile']);
+          form.reset();
+        },
+        err => console.log(err)
 
+      )
+      
   }  
   goToFindUserPage(){
     this.router.navigate(['/found']);
