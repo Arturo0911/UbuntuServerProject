@@ -1,6 +1,12 @@
-FROM node:15.0-alpine AS build
+### STAGE 1: Build ###
+FROM node:15.11.0-alpine AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN ng serve
+RUN npm run build
+
+
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/reddit-hub-post /usr/share/nginx/html
