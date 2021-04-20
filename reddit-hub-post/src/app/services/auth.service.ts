@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  private URL = 'http://127.0.0.1:8080';
+  private URL = 'http://192.168.100.22:8087';
 
   constructor(private http:HttpClient, private router:Router) { }
 
